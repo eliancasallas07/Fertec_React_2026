@@ -1,3 +1,119 @@
+/* Burbuja de chatbot flotante */
+.ChatBotBubble {
+  position: fixed;
+  right: 24px;
+  bottom: 90px;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.ChatBotBubble-btn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  font-size: 2rem;
+  box-shadow: 0 2px 12px rgba(25,118,210,0.18);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.ChatBotBubble-btn:hover {
+  background: #1251a3;
+  transform: scale(1.08);
+}
+.ChatBotBubble.open .ChatBotBubble-btn {
+  display: none;
+}
+.ChatBotBubble-window {
+  width: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(25,118,210,0.18);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.3s;
+}
+.ChatBotBubble-header {
+  background: #1976d2;
+  color: #fff;
+  padding: 0.7rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.ChatBotBubble-close {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.ChatBotBubble-messages {
+  padding: 1rem;
+  min-height: 60px;
+  max-height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.ChatBotBubble-msg-bot {
+  background: #e3f0fc;
+  color: #1976d2;
+  align-self: flex-start;
+  padding: 0.5em 1em;
+  border-radius: 12px 12px 12px 4px;
+  font-size: 1em;
+  max-width: 90%;
+}
+.ChatBotBubble-msg-user {
+  background: #1976d2;
+  color: #fff;
+  align-self: flex-end;
+  padding: 0.5em 1em;
+  border-radius: 12px 12px 4px 12px;
+  font-size: 1em;
+  max-width: 90%;
+}
+.ChatBotBubble-input {
+  display: flex;
+  border-top: 1px solid #eee;
+  padding: 0.5rem;
+  background: #fafbfc;
+}
+.ChatBotBubble-input input {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.4em 0.7em;
+  font-size: 1em;
+  margin-right: 0.5em;
+}
+.ChatBotBubble-input button {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4em 1em;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ChatBotBubble-input button:hover {
+  background: #1251a3;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 /* Botón flotante de WhatsApp */
 .Whatsapp-float {
   position: fixed;
