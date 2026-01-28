@@ -1,3 +1,4 @@
+  // ...existing code...
 
 import './App.css';
 import logo from './img/logo.png';
@@ -145,6 +146,17 @@ function App() {
           <span>© 2026 Catálogo de Cerraduras</span>
         </div>
       </footer>
+
+      {/* Botón flotante de WhatsApp */}
+      <a
+        href="https://wa.me/573108530408"
+        className="Whatsapp-float"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+      >
+        <img src={require('./img/whatsapp-icon.png')} alt="WhatsApp" />
+      </a>
     </div>
   );
 }
