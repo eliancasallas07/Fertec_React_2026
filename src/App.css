@@ -1,3 +1,188 @@
+/* FILTROS LATERALES */
+.Filtros-section {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  padding: 1.5rem 1rem;
+  width: 260px;
+  min-width: 220px;
+  margin-right: 2rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #222;
+  float: left;
+}
+.Filtros-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+}
+.Filtros-group {
+  margin-bottom: 1.5rem;
+}
+.Filtros-subtitle {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.Filtros-group hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 0.3rem 0 0.7rem 0;
+}
+.Filtros-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.Filtros-cantidad {
+  color: #02d3e0;
+  font-size: 0.95em;
+  margin-left: 0.2em;
+}
+.Filtros-acceso-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.Filtros-acceso-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  padding: 0.4em 0.7em;
+  font-size: 1.05em;
+  cursor: pointer;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.Filtros-acceso-btn:hover {
+  border: 2px solid #02d3e0;
+  box-shadow: 0 2px 8px rgba(255,123,34,0.08);
+}
+/* Imagen de la cerradura en la card */
+.Catalogo-img {
+  width: 100%;
+  max-width: 180px;
+  height: 120px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 1rem auto;
+  border-radius: 8px;
+  background: #f5f5f5;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+}
+/* NAVBAR ESTILOS */
+.Nav-bar {
+  width: 100%;
+  background: #0f1028;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  box-sizing: border-box;
+  min-height: 56px;
+  gap: 1rem;
+}
+.Nav-menu-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.Nav-bar-icon {
+  width: 32px;
+  height: 4px;
+  background: #02d3e0;
+  border-radius: 2px;
+  display: block;
+}
+.Nav-logo-text {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-left: 1rem;
+}
+.Nav-contact-btn {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid #fff;
+  border-radius: 8px;
+  padding: 0.3rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.Nav-contact-btn:hover {
+  background: #fff;
+  color: #0f1028;
+}
+.Nav-search {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.1rem 0.5rem;
+  margin: 0 1rem;
+}
+.Nav-search input {
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  background: transparent;
+  padding: 0.3rem 0.5rem;
+  color: #222;
+  width: 120px;
+}
+.Nav-search-icon {
+  color: #444;
+  font-size: 1.3rem;
+  margin-left: 0.2rem;
+}
+.Nav-user {
+  margin: 0 1rem;
+}
+.Nav-user-icon {
+  font-size: 2rem;
+  color: #fff;
+}
+.Nav-cart {
+  position: relative;
+  margin-right: 1rem;
+}
+.Nav-cart-icon {
+  font-size: 2rem;
+  color: #fff;
+}
+.Nav-cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #02d3e0;
+  color: #fff;
+  font-size: 0.8rem;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-weight: bold;
+  min-width: 18px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+/* Estilo específico para el logo */
+.App-logo-img {
+  height: 300px;
+  width: auto;
+  margin: 10px 0;
+  filter: drop-shadow(0 2px 8px rgba(25, 118, 210, 0.15));
+  transition: transform 0.2s;
+}
+.App-logo-img:hover {
+  transform: scale(1.08) rotate(-2deg);
+}
 .App {
   text-align: center;
 }
@@ -14,8 +199,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #0f1028;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,6 +212,98 @@
 .App-link {
   color: #61dafb;
 }
+
+/* Estilos para el catálogo de cerraduras */
+.Catalogo-main {
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.Catalogo-lista {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.Catalogo-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 250px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s;
+}
+.Catalogo-card:hover {
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);
+}
+.Catalogo-titulo {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.Catalogo-precio {
+  font-weight: bold;
+  color: #1976d2;
+}
+.Catalogo-footer {
+  background-color: #0f1028;
+  padding: 2rem 0 0 0;
+  color: #fff;
+}
+
+.Footer-columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.Footer-col {
+  flex: 1;
+  min-width: 200px;
+  margin: 0 1rem;
+}
+.Footer-logo {
+  height: 40px;
+  margin-bottom: 1rem;
+}
+.Footer-col h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.Footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.Footer-col ul li {
+  margin-bottom: 0.5rem;
+  font-size: 0.98rem;
+}
+.Footer-social {
+  margin-top: 1rem;
+}
+.Footer-legal {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+.Footer-copyright {
+  text-align: center;
+  padding: 1rem 0 0.5rem 0;
+  font-size: 0.95rem;
+  color: #fff;
+  opacity: 0.7;
+}
+
 
 @keyframes App-logo-spin {
   from {
