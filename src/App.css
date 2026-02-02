@@ -233,6 +233,8 @@ a.Whatsapp-float {
   display: none;
 }
 .ChatBotBubble-window {
+    max-height: 350px;
+    overflow-y: auto;
   width: 320px;
   background: #fff;
   border-radius: 12px;
@@ -240,6 +242,20 @@ a.Whatsapp-float {
   display: flex;
   flex-direction: column;
   animation: fadeInUp 0.3s;
+  position: fixed;
+  right: 40px;
+  bottom: 0px;
+  max-height: 360px;   
+  overflow-y: auto;
+  
+}
+@media (max-width: 600px) {
+  .ChatBotBubble-window {
+    right: 12px;
+    bottom: 120px;
+    width: 95vw;
+    max-width: 360px;
+  }
 }
 .ChatBotBubble-header {
   background: #1976d2;
