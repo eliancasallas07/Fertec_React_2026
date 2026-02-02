@@ -99,7 +99,7 @@ function ChatBotBubble() {
         </div>
       ) : (
         <button className="ChatBotBubble-btn" onClick={() => setOpen(true)} title="Chatea con nosotros">
-          <img src={require('./img/chat-bot.png')} alt="ChatBot" style={{width:32, height:32}} />
+          <img src={require('./img/chat-bot.png')} alt="ChatBot" className="ChatBotBubble-img" />
         </button>
       )}
     </div>
@@ -119,7 +119,7 @@ const Layout = ({ children, titulo }) => {
         <h1>Catálogo de Cerraduras</h1>
       </header>
       <nav className="Nav-bar">
-        <div className="Nav-menu-icon" onClick={() => setSidebarOpen(true)} style={{cursor:'pointer'}}>
+        <div className="Nav-menu-icon" onClick={() => setSidebarOpen(true)}>
           <span className="Nav-bar-icon"></span>
           <span className="Nav-bar-icon"></span>
           <span className="Nav-bar-icon"></span>
@@ -127,8 +127,7 @@ const Layout = ({ children, titulo }) => {
         <div className="Nav-logo-text">FERTEC</div>
         <a
           href="https://wa.me/573108530408"
-          className="Nav-contact-btn"
-          style={{ textDecoration: 'none' }}
+          className="Nav-contact-btn Nav-contact-btn-link"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -137,14 +136,14 @@ const Layout = ({ children, titulo }) => {
         <div className="Nav-search">
           <input type="text" placeholder="Buscar..." />
           <span className="Nav-search-icon">
-            <img src={lupaIcon} alt="Buscar" style={{width: '22px', height: '22px', verticalAlign: 'middle'}} />
+            <img src={lupaIcon} alt="Buscar" className="Nav-search-img" />
           </span>
         </div>
         <div className="Nav-user">
-          <img src={userIcon} alt="Perfil" className="Nav-user-icon" style={{width: '28px', height: '28px'}} />
+          <img src={userIcon} alt="Perfil" className="Nav-user-icon" />
         </div>
         <div className="Nav-cart">
-          <img src={cartIcon} alt="Carrito" className="Nav-cart-icon" style={{width: '28px', height: '28px'}} />
+          <img src={cartIcon} alt="Carrito" className="Nav-cart-icon" />
           <span className="Nav-cart-badge">0</span>
         </div>
       </nav>
@@ -152,7 +151,7 @@ const Layout = ({ children, titulo }) => {
         {/* Sección independiente para el título */}
         <section className="Catalogo-titulo-section">
           {titulo && (
-            <h2 style={{marginTop: '1.5rem', marginBottom: '1.5rem', fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', color: '#222'}}>{titulo}</h2>
+            <h2 className="Catalogo-titulo-main">{titulo}</h2>
           )}
         </section>
         {/* Solo renderizar el filtro, sin títulos ni textos extra */}
@@ -209,29 +208,29 @@ const Layout = ({ children, titulo }) => {
           </div>
         </section>
         {/* Imágenes del catálogo */}
-        <div className="Catalogo-lista" style={{display: 'flex', justifyContent: 'center', gap: '2rem', marginTop: '2rem', flexWrap: 'wrap'}}>
+        <div className="Catalogo-lista">
           <div className="Catalogo-card">
-            <img src={cerradura1} alt="Cerradura Digital 1" className="Catalogo-img" style={{width: '120px', height: 'auto'}} />
+            <img src={cerradura1} alt="Cerradura Digital 1" className="Catalogo-img Catalogo-img-small" />
             <h2 className="Catalogo-titulo">Cerradura Digital 1</h2>
           </div>
           <div className="Catalogo-card">
-            <img src={cerradura2} alt="Cerradura Digital 2" className="Catalogo-img" style={{width: '120px', height: 'auto'}} />
+            <img src={cerradura2} alt="Cerradura Digital 2" className="Catalogo-img Catalogo-img-small" />
             <h2 className="Catalogo-titulo">Cerradura Digital 2</h2>
           </div>
           <div className="Catalogo-card">
-            <img src={cerradura3} alt="Cerradura Digital 3" className="Catalogo-img" style={{width: '120px', height: 'auto'}} />
+            <img src={cerradura3} alt="Cerradura Digital 3" className="Catalogo-img Catalogo-img-small" />
             <h2 className="Catalogo-titulo">Cerradura Digital 3</h2>
           </div>
           <div className="Catalogo-card">
-            <img src={cerradura1} alt="Cerradura Digital 4" className="Catalogo-img" style={{width: '120px', height: 'auto'}} />
+            <img src={cerradura1} alt="Cerradura Digital 4" className="Catalogo-img Catalogo-img-small" />
             <h2 className="Catalogo-titulo">Cerradura Digital 4</h2>
           </div>
           <div className="Catalogo-card">
-            <img src={cerradura2} alt="Cerradura Digital 5" className="Catalogo-img" style={{width: '120px', height: 'auto'}} />
+            <img src={cerradura2} alt="Cerradura Digital 5" className="Catalogo-img Catalogo-img-small" />
             <h2 className="Catalogo-titulo">Cerradura Digital 5</h2>
           </div>
           <div className="Catalogo-card">
-            <img src={cerradura3} alt="Cerradura Digital 6" className="Catalogo-img" style={{width: '120px', height: 'auto'}} />
+            <img src={cerradura3} alt="Cerradura Digital 6" className="Catalogo-img Catalogo-img-small" />
             <h2 className="Catalogo-titulo">Cerradura Digital 6</h2>
           </div>
         </div>

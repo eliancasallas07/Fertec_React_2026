@@ -1,10 +1,160 @@
+html, body, #root, .App {
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+@media (max-width: 600px) {
+  a.Whatsapp-float, .ChatBotBubble-btn {
+    width: 48px;
+    height: 48px;
+    right: 12px;
+  }
+  a.Whatsapp-float {
+    bottom: 12px;
+  }
+  .ChatBotBubble-btn {
+    bottom: 64px;
+  }
+  a.Whatsapp-float img {
+    width: 28px;
+    height: 28px;
+  }
+}
+.ChatBotBubble {
+  position: fixed;
+  right: 20px;
+  bottom: 90px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 60px;
+  height: 60px;
+}
+
+.ChatBotBubble > * {
+  width: 100%;
+  height: 100%;
+}
+
+a.Whatsapp-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #25d366;
+  border-radius: 50%;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  text-decoration: none;
+}
+
+ 
+/* Centrado para páginas migradas de estilos inline */
+.PageCentered {
+  text-align: center;
+  margin-top: 2rem;
+}
+/* ========== CLASES PARA ESTILOS INLINE MIGRADOS ========== */
+.ChatBotBubble-img {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+  /* --- BOTONES FLOTANTES UNIFICADOS --- */
+  a.Whatsapp-float, .ChatBotBubble-btn {
+    position: fixed;
+    right: 20px;
+    z-index: 10000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  a.Whatsapp-float {
+    bottom: 20px;
+    background: #25d366;
+    text-decoration: none;
+  }
+  a.Whatsapp-float:hover {
+    box-shadow: 0 4px 24px rgba(37,211,102,0.25);
+    transform: scale(1.08);
+  }
+  a.Whatsapp-float img {
+    width: 38px;
+    height: 38px;
+    display: block;
+  }
+  .ChatBotBubble-btn {
+    bottom: 90px;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+  }
+  .ChatBotBubble-btn:hover {
+    background: #1251a3;
+    box-shadow: 0 4px 24px rgba(25,118,210,0.25);
+    transform: scale(1.08);
+  }
+  .ChatBotBubble.open .ChatBotBubble-btn {
+    display: none;
+  }
+.Nav-menu-icon {
+  cursor: pointer;
+}
+
+.Nav-contact-btn-link {
+  text-decoration: none;
+}
+
+.Nav-search-img {
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+}
+
+.Nav-user-icon,
+.Nav-cart-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.Catalogo-titulo-main {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #222;
+}
+
+.Catalogo-lista {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.Catalogo-img-small {
+  width: 120px;
+  height: auto;
+}
 /* Sidebar estilos básicos */
 .Sidebar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 270px;
-  height: 100vh;
   background: #181c3a;
   color: #fff;
   box-shadow: 2px 0 16px rgba(0,0,0,0.18);
@@ -87,7 +237,6 @@
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 24px rgba(25,118,210,0.18);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   animation: fadeInUp 0.3s;
@@ -167,6 +316,48 @@
   to { opacity: 1; transform: translateY(0); }
 }
 /* Botón flotante de WhatsApp */
+.Whatsapp-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  background: #25d366;
+  border-radius: 50%;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+@media (max-width: 600px) {
+  .Whatsapp-float {
+    right: 12px;
+    bottom: 12px;
+    padding: 10px;
+    width: 48px;
+    height: 48px;
+  }
+}
+.ChatBotBubble {
+  position: fixed;
+  right: 20px;
+  bottom: 90px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+@media (max-width: 600px) {
+  .ChatBotBubble {
+    right: 12px;
+    bottom: 68px;
+    width: 48px;
+    height: 48px;
+  }
+}
 .Whatsapp-float {
   position: fixed;
   right: 24px;
@@ -320,6 +511,9 @@
   border-radius: 8px;
   padding: 0.1rem 0.5rem;
   margin: 0 1rem;
+  max-width: 180px;
+  min-width: 0;
+  width: 100%;
 }
 .Nav-search input {
   border: none;
@@ -328,7 +522,33 @@
   background: transparent;
   padding: 0.3rem 0.5rem;
   color: #222;
-  width: 120px;
+  width: 90px;
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+}
+  .Nav-menu-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto 0.5rem auto;
+  }
+  .Nav-bar-icon {
+    margin: 0 auto;
+    display: block;
+  }
+.Nav-search {
+  width: 60vw;
+  max-width: 94vw;
+  min-width: 0;
+  margin: 0 auto 1rem auto;
+  box-sizing: border-box;
+}
+.Nav-search input {
+  width: 60px;
+  font-size: 1rem;
 }
 .Nav-search-icon {
   color: #444;
@@ -412,6 +632,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .Catalogo-lista {
@@ -419,6 +640,105 @@
   gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+/* Responsive: catálogo y cards en cascada */
+@media (max-width: 900px) {
+  .Catalogo-main {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  .Catalogo-lista {
+    gap: 1.2rem;
+  }
+  .Catalogo-card {
+    width: 90vw;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .Catalogo-main {
+    padding: 0.5rem;
+  }
+  .Catalogo-lista {
+    gap: 0.7rem;
+  }
+  .Catalogo-card {
+    width: 98vw;
+    max-width: 99vw;
+    min-width: 0;
+    padding: 0.7rem;
+  }
+}
+
+/* Footer responsive en cascada */
+@media (max-width: 900px) {
+  .Footer-columns {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+    padding: 1rem 0.5rem;
+  }
+  .Footer-col {
+    margin: 0 0 1rem 0;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .Footer-columns {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 0.5rem 0.2rem;
+    max-width: 100vw;
+  }
+  .Footer-col {
+    min-width: 0;
+    width: 100%;
+    margin: 0 0 0.7rem 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .Footer-logo {
+    height: 32px;
+    margin-bottom: 0.5rem;
+  }
+  .Footer-col h3 {
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+  }
+  .Footer-col ul li {
+    font-size: 0.95rem;
+  }
+  .Footer-legal, .Footer-copyright {
+    font-size: 0.85rem;
+    padding: 0.5rem 0 0.2rem 0;
+  }
+}
+
+/* Sidebar y navbar responsive */
+@media (max-width: 700px) {
+  .Nav-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.5rem 0.5rem;
+    gap: 0.5rem;
+  }
+  .Nav-logo-text {
+    font-size: 1.3rem;
+    margin-left: 0.3rem;
+  }
+  .Nav-search {
+    margin: 0 0.2rem;
+    width: 100%;
+  }
+  .Nav-user, .Nav-cart {
+    margin: 0 0.2rem;
+  }
 }
 
 .Catalogo-card {
@@ -445,6 +765,7 @@
   background-color: #0f1028;
   padding: 2rem 0 0 0;
   color: #fff;
+  min-height: 120px;
 }
 
 .Footer-columns {
@@ -456,6 +777,56 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
+}
+
+@media (max-width: 700px) {
+  .Footer-columns {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.2rem;
+    padding: 1.2rem 0.2rem;
+    max-width: 100vw;
+    width: 100vw;
+  }
+  .Footer-col {
+    width: 100vw !important;
+    min-width: 0 !important;
+    margin: 0 0 1.2rem 0 !important;
+    padding: 0.5rem 0 !important;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .Footer-logo {
+    height: 32px;
+    margin-bottom: 0.5rem;
+  }
+  .Footer-col h3 {
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+    text-align: center;
+  }
+  .Footer-col ul {
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .Footer-col ul li {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+  .Footer-social {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+  }
+  .Footer-legal, .Footer-copyright {
+    font-size: 0.85rem;
+    padding: 0.5rem 0 0.2rem 0;
+    text-align: center;
+  }
 }
 .Footer-col {
   flex: 1;
@@ -503,5 +874,25 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .Nav-cart {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
+  }
+  .Nav-cart-badge {
+    top: 2px;
+    right: 50%;
+    left: 50%;
+    transform: translateX(50%) translateY(-60%);
+    z-index: 2;
+    min-width: 18px;
+    font-size: 0.85rem;
+    padding: 2px 6px;
   }
 }
