@@ -1,11 +1,15 @@
-html, body, #root, .App {
+html,
+body,
+#root,
+.App {
   min-height: 100vh;
   width: 100vw;
   overflow-x: auto;
   overflow-y: auto;
 }
 @media (max-width: 600px) {
-  a.Whatsapp-float, .ChatBotBubble-btn {
+  a.Whatsapp-float,
+  .ChatBotBubble-btn {
     width: 48px;
     height: 48px;
     right: 12px;
@@ -50,11 +54,10 @@ a.Whatsapp-float {
   height: 40px;
   background: #25d366;
   border-radius: 50%;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
   text-decoration: none;
 }
 
- 
 /* Centrado para páginas migradas de estilos inline */
 .PageCentered {
   text-align: center;
@@ -67,50 +70,53 @@ a.Whatsapp-float {
   display: block;
 }
 
-  /* --- BOTONES FLOTANTES UNIFICADOS --- */
-  a.Whatsapp-float, .ChatBotBubble-btn {
-    position: fixed;
-    right: 20px;
-    z-index: 10000;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-    transition: box-shadow 0.2s, transform 0.2s;
-    cursor: pointer;
-  }
-  a.Whatsapp-float {
-    bottom: 20px;
-    background: #25d366;
-    text-decoration: none;
-  }
-  a.Whatsapp-float:hover {
-    box-shadow: 0 4px 24px rgba(37,211,102,0.25);
-    transform: scale(1.08);
-  }
-  a.Whatsapp-float img {
-    width: 38px;
-    height: 38px;
-    display: block;
-  }
-  .ChatBotBubble-btn {
-    bottom: 90px;
-    background: #1976d2;
-    color: #fff;
-    border: none;
-    font-size: 2rem;
-  }
-  .ChatBotBubble-btn:hover {
-    background: #1251a3;
-    box-shadow: 0 4px 24px rgba(25,118,210,0.25);
-    transform: scale(1.08);
-  }
-  .ChatBotBubble.open .ChatBotBubble-btn {
-    display: none;
-  }
+/* --- BOTONES FLOTANTES UNIFICADOS --- */
+a.Whatsapp-float,
+.ChatBotBubble-btn {
+  position: fixed;
+  right: 20px;
+  z-index: 10000;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
+  cursor: pointer;
+}
+a.Whatsapp-float {
+  bottom: 20px;
+  background: #25d366;
+  text-decoration: none;
+}
+a.Whatsapp-float:hover {
+  box-shadow: 0 4px 24px rgba(37, 211, 102, 0.25);
+  transform: scale(1.08);
+}
+a.Whatsapp-float img {
+  width: 38px;
+  height: 38px;
+  display: block;
+}
+.ChatBotBubble-btn {
+  bottom: 90px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+}
+.ChatBotBubble-btn:hover {
+  background: #1251a3;
+  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.25);
+  transform: scale(1.08);
+}
+.ChatBotBubble.open .ChatBotBubble-btn {
+  display: none;
+}
 .Nav-menu-icon {
   cursor: pointer;
 }
@@ -157,7 +163,7 @@ a.Whatsapp-float {
   position: fixed;
   background: #181c3a;
   color: #fff;
-  box-shadow: 2px 0 16px rgba(0,0,0,0.18);
+  box-shadow: 2px 0 16px rgba(0, 0, 0, 0.18);
   transform: translateX(-100%);
   transition: transform 0.3s ease;
   z-index: 2000;
@@ -218,12 +224,14 @@ a.Whatsapp-float {
   width: 54px;
   height: 54px;
   font-size: 2rem;
-  box-shadow: 0 2px 12px rgba(25,118,210,0.18);
+  box-shadow: 0 2px 12px rgba(25, 118, 210, 0.18);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
 }
 .ChatBotBubble-btn:hover {
   background: #1251a3;
@@ -233,21 +241,20 @@ a.Whatsapp-float {
   display: none;
 }
 .ChatBotBubble-window {
-    max-height: 350px;
-    overflow-y: auto;
+  max-height: 350px;
+  overflow-y: auto;
   width: 320px;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(25,118,210,0.18);
+  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.18);
   display: flex;
   flex-direction: column;
   animation: fadeInUp 0.3s;
   position: fixed;
   right: 40px;
   bottom: 0px;
-  max-height: 360px;   
+  max-height: 360px;
   overflow-y: auto;
-  
 }
 @media (max-width: 600px) {
   .ChatBotBubble-window {
@@ -328,8 +335,14 @@ a.Whatsapp-float {
   background: #1251a3;
 }
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 /* Botón flotante de WhatsApp */
 .Whatsapp-float {
@@ -339,12 +352,14 @@ a.Whatsapp-float {
   z-index: 9999;
   background: #25d366;
   border-radius: 50%;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
   padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 
 @media (max-width: 600px) {
@@ -381,15 +396,17 @@ a.Whatsapp-float {
   z-index: 1000;
   background: #25d366;
   border-radius: 50%;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 .Whatsapp-float:hover {
-  box-shadow: 0 4px 24px rgba(37,211,102,0.25);
+  box-shadow: 0 4px 24px rgba(37, 211, 102, 0.25);
   transform: scale(1.08);
 }
 .Whatsapp-float img {
@@ -401,12 +418,12 @@ a.Whatsapp-float {
 .Filtros-section {
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   padding: 1.5rem 1rem;
   width: 260px;
   min-width: 220px;
   margin-right: 2rem;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   color: #222;
   float: left;
 }
@@ -454,11 +471,13 @@ a.Whatsapp-float {
   padding: 0.4em 0.7em;
   font-size: 1.05em;
   cursor: pointer;
-  transition: border 0.2s, box-shadow 0.2s;
+  transition:
+    border 0.2s,
+    box-shadow 0.2s;
 }
 .Filtros-acceso-btn:hover {
   border: 2px solid #02d3e0;
-  box-shadow: 0 2px 8px rgba(255,123,34,0.08);
+  box-shadow: 0 2px 8px rgba(255, 123, 34, 0.08);
 }
 /* Imagen de la cerradura en la card */
 .Catalogo-img {
@@ -470,7 +489,7 @@ a.Whatsapp-float {
   margin: 0 auto 1rem auto;
   border-radius: 8px;
   background: #f5f5f5;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.07);
 }
 /* NAVBAR ESTILOS */
 .Nav-bar {
@@ -482,7 +501,7 @@ a.Whatsapp-float {
   padding: 0.5rem 2rem;
   box-sizing: border-box;
   min-height: 56px;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 .Nav-menu-icon {
   display: flex;
@@ -499,12 +518,12 @@ a.Whatsapp-float {
   display: block;
 }
 .Nav-logo-text {
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   font-size: 2rem;
   font-weight: bold;
   color: #fff;
-  letter-spacing: 2px;
-  margin-left: 1rem;
+  letter-spacing: 10px;
+  
 }
 .Nav-contact-btn {
   background: transparent;
@@ -514,7 +533,10 @@ a.Whatsapp-float {
   padding: 0.3rem 1rem;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
+ 
 }
 .Nav-contact-btn:hover {
   background: #fff;
@@ -527,8 +549,8 @@ a.Whatsapp-float {
   border-radius: 8px;
   padding: 0.1rem 0.5rem;
   margin: 0 1rem;
-  max-width: 180px;
-  min-width: 0;
+  max-width: 120px;
+  min-width: 80px;
   width: 100%;
 }
 .Nav-search input {
@@ -538,23 +560,23 @@ a.Whatsapp-float {
   background: transparent;
   padding: 0.3rem 0.5rem;
   color: #222;
-  width: 90px;
+  width: 70px;
   min-width: 0;
 }
 
 @media (max-width: 700px) {
 }
-  .Nav-menu-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 0 auto 0.5rem auto;
-  }
-  .Nav-bar-icon {
-    margin: 0 auto;
-    display: block;
-  }
+.Nav-menu-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto 0.5rem auto;
+}
+.Nav-bar-icon {
+  margin: 0 auto;
+  display: block;
+}
 .Nav-search {
   width: 60vw;
   max-width: 94vw;
@@ -598,7 +620,7 @@ a.Whatsapp-float {
   font-weight: bold;
   min-width: 18px;
   text-align: center;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 /* Estilo específico para el logo */
 .App-logo-img {
@@ -648,14 +670,14 @@ a.Whatsapp-float {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .Catalogo-lista {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 /* Responsive: catálogo y cards en cascada */
@@ -664,6 +686,7 @@ a.Whatsapp-float {
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+    flex-wrap: wrap;
   }
   .Catalogo-lista {
     gap: 1.2rem;
@@ -730,7 +753,8 @@ a.Whatsapp-float {
   .Footer-col ul li {
     font-size: 0.95rem;
   }
-  .Footer-legal, .Footer-copyright {
+  .Footer-legal,
+  .Footer-copyright {
     font-size: 0.85rem;
     padding: 0.5rem 0 0.2rem 0;
   }
@@ -750,20 +774,24 @@ a.Whatsapp-float {
   }
   .Nav-search {
     margin: 0 0.2rem;
-    width: 100%;
+    width: 60vw;
+    max-width: 94vw;
+    min-width: 0;
+    box-sizing: border-box;
   }
-  .Nav-user, .Nav-cart {
-    margin: 0 0.2rem;
+  .Nav-user,
+  .Nav-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.5rem 0.5rem;
+    gap: 0.5rem;
+    justify-content: center;
   }
-}
-
-.Catalogo-card {
-  border: 1px solid #ccc;
   border-radius: 8px;
   padding: 1rem;
   width: 250px;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   transition: box-shadow 0.2s;
 }
 .Catalogo-card:hover {
@@ -838,7 +866,8 @@ a.Whatsapp-float {
     display: flex;
     width: 100%;
   }
-  .Footer-legal, .Footer-copyright {
+  .Footer-legal,
+  .Footer-copyright {
     font-size: 0.85rem;
     padding: 0.5rem 0 0.2rem 0;
     text-align: center;
@@ -882,7 +911,6 @@ a.Whatsapp-float {
   color: #fff;
   opacity: 0.7;
 }
-
 
 @keyframes App-logo-spin {
   from {
