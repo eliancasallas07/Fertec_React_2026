@@ -1,3 +1,55 @@
+/* Sidebar estilos básicos */
+.Sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 270px;
+  height: 100vh;
+  background: #181c3a;
+  color: #fff;
+  box-shadow: 2px 0 16px rgba(0,0,0,0.18);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 2000;
+  padding-top: 32px;
+  padding-left: 24px;
+  padding-right: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.Sidebar.open {
+  transform: translateX(0);
+}
+.Sidebar-close {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
+.Sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 32px;
+}
+.Sidebar-list li {
+  margin-bottom: 18px;
+}
+.Sidebar-list a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.08rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.Sidebar-list a:hover {
+  color: #00e6e6;
+}
+
 /* Burbuja de chatbot flotante */
 .ChatBotBubble {
   position: fixed;
