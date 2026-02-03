@@ -2,8 +2,6 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import logo from './img/logo.png';
-import userIcon from './img/user.png';
-import cartIcon from './img/carrito_compras.png';
 import lupaIcon from './img/lupa.png';
 import cerraduraBluetooth from './img/cerradura_bluetooth.png';
 import cerraduraDigital from './img/cerradura_digital.png';
@@ -259,13 +257,6 @@ const Layout = ({ children, titulo }) => {
           <span className="Nav-search-icon">
             <img src={lupaIcon} alt="Buscar" className="Nav-search-img" />
           </span>
-        </div>
-        <div className="Nav-user">
-          <img src={userIcon} alt="Perfil" className="Nav-user-icon" />
-        </div>
-        <div className="Nav-cart">
-          <img src={cartIcon} alt="Carrito" className="Nav-cart-icon" />
-          <span className="Nav-cart-badge">0</span>
         </div>
       </nav>
       <main className="Catalogo-main">
