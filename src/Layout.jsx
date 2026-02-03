@@ -1,13 +1,86 @@
-import cerradura1 from './img/cerradura1.png';
-import cerradura2 from './img/cerradura2.png';
-import cerradura3 from './img/cerradura3.jpg';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import logo from './img/logo.png';
 import userIcon from './img/user.png';
 import cartIcon from './img/carrito_compras.png';
 import lupaIcon from './img/lupa.png';
+import cerraduraBluetooth from './img/cerradura_bluetooth.png';
+import cerraduraDigital from './img/cerradura_digital.png';
+import cerraduraHuella from './img/cerradura_huella.png';
+import cerraduraInteligente from './img/cerradura_inteligente.png';
+import cerraduraTarjeta from './img/cerradura_tarjeta.png';
+// Datos de cerraduras
+const CERRADURAS = [
+  {
+    key: 'bluetooth',
+    nombre: 'Cerradura Bluetooth',
+    marca: 'Samsung',
+    categoria: 'Cerraduras Bluetooth',
+    precio: 690000,
+    precioTachado: 1200000,
+    acceso: 'Bluetooth',
+    color: 'Plateado',
+    img: cerraduraBluetooth,
+    desc: 'Conexión inalámbrica para control desde tu smartphone.',
+    badge: 'RECOMENDADO',
+    descuento: '-43%'
+  },
+  {
+    key: 'digital',
+    nombre: 'Cerradura Digital',
+    marca: 'Yale',
+    categoria: 'Cerraduras Digitales',
+    precio: 590000,
+    precioTachado: 1000000,
+    acceso: 'Código',
+    color: 'Negro Mate',
+    img: cerraduraDigital,
+    desc: 'Apertura con código numérico y máxima seguridad.',
+    badge: 'MÁS VENDIDO',
+    descuento: '-41%'
+  },
+  {
+    key: 'huella',
+    nombre: 'Cerradura Huella',
+    marca: 'MarcaFertec',
+    categoria: 'Cerraduras Huella',
+    precio: 850000,
+    precioTachado: 1400000,
+    acceso: 'Huella',
+    color: 'Gris',
+    img: cerraduraHuella,
+    desc: 'Acceso rápido y seguro con huella digital.',
+    descuento: '-39%'
+  },
+  {
+    key: 'inteligente',
+    nombre: 'Cerradura Inteligente',
+    marca: 'Philips',
+    categoria: 'Cerraduras Inteligentes',
+    precio: 990000,
+    precioTachado: 1600000,
+    acceso: 'Wi-Fi',
+    color: 'Dorado',
+    img: cerraduraInteligente,
+    desc: 'Control total desde app móvil y múltiples accesos.',
+    descuento: '-38%'
+  },
+  {
+    key: 'tarjeta',
+    nombre: 'Cerradura Tarjeta',
+    marca: 'Samsung',
+    categoria: 'Cerraduras Tarjeta',
+    precio: 670000,
+    precioTachado: 1100000,
+    acceso: 'Tarjeta',
+    color: 'Plateado',
+    img: cerraduraTarjeta,
+    desc: 'Ideal para hoteles y oficinas, acceso con tarjeta.',
+    descuento: '-39%'
+  },
+];
+
 // Componente de burbuja de chatbot sencillo
 function ChatBotBubble() {
   const [open, setOpen] = useState(false);
@@ -109,6 +182,54 @@ function ChatBotBubble() {
 const Layout = ({ children, titulo }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  // Estado para filtros
+  const [filtro, setFiltro] = useState({ tipo: '', valor: '' });
+  const [accesoActivo, setAccesoActivo] = useState('');
+  const [resultados, setResultados] = useState(CERRADURAS);
+
+  // Manejar selección de checkbox (solo uno a la vez)
+  const handleFiltroChange = (tipo, valor) => {
+    setFiltro({ tipo, valor });
+    setAccesoActivo('');
+  };
+  // Manejar selección de acceso (solo uno a la vez)
+  const handleAcceso = (valor) => {
+    setFiltro({ tipo: 'acceso', valor });
+    setAccesoActivo(valor);
+  };
+  // Buscar según filtro
+  const buscar = () => {
+    let res = [];
+    if (!filtro.tipo || !filtro.valor) {
+      setResultados(CERRADURAS);
+      return;
+    }
+    if (filtro.tipo === 'marca') {
+      // Mostrar una cerradura al azar de esa marca
+      const arr = CERRADURAS.filter(c => c.marca === filtro.valor);
+      if (arr.length > 0) res = [arr[Math.floor(Math.random() * arr.length)]];
+    } else if (filtro.tipo === 'categoria') {
+      // Mostrar todas las cerraduras de esa categoría
+      res = CERRADURAS.filter(c => c.categoria === filtro.valor);
+    } else if (filtro.tipo === 'precio') {
+      // Mostrar cerraduras en el rango
+      if (filtro.valor === '$150.000 — $300.000') res = CERRADURAS.filter(c => c.precio >= 150000 && c.precio <= 300000);
+      else if (filtro.valor === '$300.001 — $600.000') res = CERRADURAS.filter(c => c.precio > 300000 && c.precio <= 600000);
+      else if (filtro.valor === '$600.001 — $1.000.000') res = CERRADURAS.filter(c => c.precio > 600000 && c.precio <= 1000000);
+      else if (filtro.valor === '$1.000.001 — $2.000.000') res = CERRADURAS.filter(c => c.precio > 1000000 && c.precio <= 2000000);
+      else if (filtro.valor === 'Más de $2.000.000') res = CERRADURAS.filter(c => c.precio > 2000000);
+    } else if (filtro.tipo === 'acceso') {
+      // Mostrar la cerradura correspondiente
+      res = CERRADURAS.filter(c => c.acceso === filtro.valor);
+      if (res.length > 0) res = [res[Math.floor(Math.random() * res.length)]];
+    } else if (filtro.tipo === 'color') {
+      // Mostrar una cerradura al azar de ese color
+      const arr = CERRADURAS.filter(c => c.color === filtro.valor);
+      if (arr.length > 0) res = [arr[Math.floor(Math.random() * arr.length)]];
+    }
+    setResultados(res.length > 0 ? res : []);
+  };
+
   return (
     <div className="App">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
@@ -154,85 +275,63 @@ const Layout = ({ children, titulo }) => {
             <h2 className="Catalogo-titulo-main">{titulo}</h2>
           )}
         </section>
-        {/* Solo renderizar el filtro, sin títulos ni textos extra */}
+        {/* Filtros dinámicos */}
         <section className="Filtros-section">
+          <button className="Filtros-buscar-btn" onClick={buscar}>Buscar</button>
           <h2 className="Filtros-title">Filtrar por</h2>
           <div className="Filtros-group">
             <div className="Filtros-group">
               <h3 className="Filtros-subtitle">Marca</h3>
               <hr />
-              <label><input type="checkbox" /> Yale</label>
-              <label><input type="checkbox" /> Samsung</label>
-              <label><input type="checkbox" /> MarcaFertec</label>
-              <label><input type="checkbox" /> Philips</label>
+              {['Yale','Samsung','MarcaFertec','Philips'].map(m => (
+                <label key={m}><input type="checkbox" checked={filtro.tipo==='marca'&&filtro.valor===m} onChange={()=>handleFiltroChange('marca',m)} /> {m}</label>
+              ))}
             </div>
             <h3 className="Filtros-subtitle">Categorías</h3>
             <hr />
-            <label><input type="checkbox" /> Cerraduras Inteligentes</label>
-            <label><input type="checkbox" /> Cerraduras Digitales</label>
-            <label><input type="checkbox" /> Cerraduras Huella</label>
-            <label><input type="checkbox" /> Cerraduras Bluetooth</label>
-            <label><input type="checkbox" /> Cerraduras Tarjeta</label>
-            <label><input type="checkbox" /> Cerraduras Código</label>
+            {['Cerraduras Inteligentes','Cerraduras Digitales','Cerraduras Huella','Cerraduras Bluetooth','Cerraduras Tarjeta','Cerraduras Código'].map(c => (
+              <label key={c}><input type="checkbox" checked={filtro.tipo==='categoria'&&filtro.valor===c} onChange={()=>handleFiltroChange('categoria',c)} /> {c}</label>
+            ))}
           </div>
           <div className="Filtros-group">
             <h3 className="Filtros-subtitle">Precio</h3>
             <hr />
-            <label><input type="checkbox" /> $150.000 — $300.000 <span className="Filtros-cantidad">(8)</span></label>
-            <label><input type="checkbox" /> $300.001 — $600.000 <span className="Filtros-cantidad">(12)</span></label>
-            <label><input type="checkbox" /> $600.001 — $1.000.000 <span className="Filtros-cantidad">(7)</span></label>
-            <label><input type="checkbox" /> $1.000.001 — $2.000.000 <span className="Filtros-cantidad">(4)</span></label>
-            <label><input type="checkbox" /> Más de $2.000.000 <span className="Filtros-cantidad">(2)</span></label>
+            {['$150.000 — $300.000','$300.001 — $600.000','$600.001 — $1.000.000','$1.000.001 — $2.000.000','Más de $2.000.000'].map(p => (
+              <label key={p}><input type="checkbox" checked={filtro.tipo==='precio'&&filtro.valor===p} onChange={()=>handleFiltroChange('precio',p)} /> {p}</label>
+            ))}
           </div>
           <div className="Filtros-group">
             <h3 className="Filtros-subtitle">Acceso</h3>
             <div className="Filtros-acceso-list">
-              <button className="Filtros-acceso-btn"><span role="img" aria-label="wifi">📶</span> Wi-Fi</button>
-              <button className="Filtros-acceso-btn"><span role="img" aria-label="bluetooth">📡</span> Bluetooth</button>
-              <button className="Filtros-acceso-btn"><span role="img" aria-label="huella">🌀</span> Huella</button>
-              <button className="Filtros-acceso-btn"><span role="img" aria-label="codigo">🔢</span> Código</button>
-              <button className="Filtros-acceso-btn"><span role="img" aria-label="tarjeta">💳</span> Tarjeta</button>
+              {['Wi-Fi','Bluetooth','Huella','Código','Tarjeta'].map(a => (
+                <button key={a} className={`Filtros-acceso-btn${accesoActivo===a?' active':''}`} onClick={()=>handleAcceso(a)}>{a}</button>
+              ))}
             </div>
           </div>
           <div className="Filtros-group">
             <h3 className="Filtros-subtitle">Color</h3>
             <hr />
-            <label><input type="checkbox" /> Negro Mate</label>
-            <label><input type="checkbox" /> Cobre</label>
-            <label><input type="checkbox" /> Plateado</label>
-            <label><input type="checkbox" /> Níquel</label>
-            <label><input type="checkbox" /> Dorado</label>
-            <label><input type="checkbox" /> Gris</label>
-            <label><input type="checkbox" /> Bronce</label>
-            <label><input type="checkbox" /> Blanco</label>
+            {['Negro Mate','Cobre','Plateado','Níquel','Dorado','Gris','Bronce','Blanco'].map(col => (
+              <label key={col}><input type="checkbox" checked={filtro.tipo==='color'&&filtro.valor===col} onChange={()=>handleFiltroChange('color',col)} /> {col}</label>
+            ))}
           </div>
         </section>
-        {/* Imágenes del catálogo */}
+        {/* Imágenes del catálogo filtradas */}
         <div className="Catalogo-lista">
-          <div className="Catalogo-card">
-            <img src={cerradura1} alt="Cerradura Digital 1" className="Catalogo-img Catalogo-img-small" />
-            <h2 className="Catalogo-titulo">Cerradura Digital 1</h2>
-          </div>
-          <div className="Catalogo-card">
-            <img src={cerradura2} alt="Cerradura Digital 2" className="Catalogo-img Catalogo-img-small" />
-            <h2 className="Catalogo-titulo">Cerradura Digital 2</h2>
-          </div>
-          <div className="Catalogo-card">
-            <img src={cerradura3} alt="Cerradura Digital 3" className="Catalogo-img Catalogo-img-small" />
-            <h2 className="Catalogo-titulo">Cerradura Digital 3</h2>
-          </div>
-          <div className="Catalogo-card">
-            <img src={cerradura1} alt="Cerradura Digital 4" className="Catalogo-img Catalogo-img-small" />
-            <h2 className="Catalogo-titulo">Cerradura Digital 4</h2>
-          </div>
-          <div className="Catalogo-card">
-            <img src={cerradura2} alt="Cerradura Digital 5" className="Catalogo-img Catalogo-img-small" />
-            <h2 className="Catalogo-titulo">Cerradura Digital 5</h2>
-          </div>
-          <div className="Catalogo-card">
-            <img src={cerradura3} alt="Cerradura Digital 6" className="Catalogo-img Catalogo-img-small" />
-            <h2 className="Catalogo-titulo">Cerradura Digital 6</h2>
-          </div>
+          {resultados.length === 0 && <div style={{textAlign:'center',width:'100%'}}>No se encontraron productos.</div>}
+          {resultados.map((c, i) => (
+            <div className="Catalogo-card" key={c.key}>
+              {c.badge && <span className={`Catalogo-badge Catalogo-badge-${c.badge==='RECOMENDADO'?'recomendado':'masvendido'}`}>{c.badge}</span>}
+              <img src={c.img} alt={c.nombre} className="Catalogo-img Catalogo-img-small" />
+              <h2 className="Catalogo-titulo">{c.nombre}</h2>
+              <p className="Catalogo-desc">{c.desc}</p>
+              <div className="Catalogo-precios">
+                <span className="Catalogo-precio-tachado">${c.precioTachado.toLocaleString()}</span>
+                <span className="Catalogo-precio">${c.precio.toLocaleString()} COP</span>
+                {c.descuento && <span className="Catalogo-descuento">{c.descuento}</span>}
+              </div>
+            </div>
+          ))}
         </div>
       </main>
       <footer className="Catalogo-footer">

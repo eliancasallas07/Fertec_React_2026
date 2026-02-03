@@ -1,3 +1,103 @@
+.Catalogo-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  letter-spacing: 0.5px;
+}
+.Catalogo-badge-recomendado {
+  background: #222;
+}
+.Catalogo-badge-masvendido {
+  background: #d32f2f;
+}
+.Catalogo-descuento {
+  color: #d32f2f;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-left: 0.3rem;
+}
+/* Descripción y precios en cards del catálogo */
+.Catalogo-desc {
+  font-size: 0.98rem;
+  color: #444;
+  margin: 0.5rem 0 0.2rem 0;
+  text-align: center;
+}
+.Catalogo-precios {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+.Catalogo-precio-tachado {
+  color: #d32f2f;
+  text-decoration: line-through;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.Catalogo-precio {
+  color: #222;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+/* Grid de cerraduras digitales */
+.CerradurasDigitales-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  margin: 2rem 0;
+}
+
+.CerraduraCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+}
+.CerraduraCard img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+.CerraduraCard p {
+  margin: 0;
+  font-weight: 500;
+  color: #1976d2;
+  text-align: center;
+}
+.CerraduraCard:hover {
+  box-shadow: 0 4px 16px rgba(25,118,210,0.15);
+}
+/* Botón de buscar en filtros */
+.Filtros-buscar-btn {
+  display: block;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 6px 16px;
+  background: #00e6e6;
+  color: #020202;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.Filtros-buscar-btn:hover {
+  background: #1565c0;
+}
 html,
 body,
 #root,
@@ -546,21 +646,25 @@ a.Whatsapp-float img {
   display: flex;
   align-items: center;
   background: #fff;
-  border-radius: 8px;
-  padding: 0.1rem 0.5rem;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
   margin: 0 1rem;
-  max-width: 120px;
-  min-width: 80px;
+  max-width: 350px;
+  min-width: 180px;
   width: 100%;
+  box-shadow: 0 0 0 2px #e3e3e3;
+  font-size: 1.2rem;
+  border: 1.5px solid #e3e3e3;
+  transition: box-shadow 0.2s, border 0.2s;
 }
 .Nav-search input {
   border: none;
   outline: none;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   background: transparent;
-  padding: 0.3rem 0.5rem;
+  padding: 0.4rem 0.7rem;
   color: #222;
-  width: 70px;
+  width: 100%;
   min-width: 0;
 }
 
@@ -578,7 +682,7 @@ a.Whatsapp-float img {
   display: block;
 }
 .Nav-search {
-  width: 60vw;
+  width: 80vw;
   max-width: 94vw;
   min-width: 0;
   margin: 0 auto 1rem auto;
@@ -773,11 +877,18 @@ a.Whatsapp-float img {
     margin-left: 0.3rem;
   }
   .Nav-search {
-    margin: 0 0.2rem;
-    width: 60vw;
-    max-width: 94vw;
+    margin: 0.5rem auto 1rem auto;
+    width: 90vw;
+    max-width: 98vw;
     min-width: 0;
     box-sizing: border-box;
+    border-radius: 12px;
+    padding: 0.7rem 1.2rem;
+    font-size: 1.1rem;
+  }
+  .Nav-search input {
+    font-size: 1.1rem;
+    padding: 0.5rem 0.7rem;
   }
   .Nav-user,
   .Nav-bar {
