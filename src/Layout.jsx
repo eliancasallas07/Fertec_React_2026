@@ -339,34 +339,36 @@ const Layout = ({ children, titulo }) => {
           <div className="Footer-col">
             <img src={logo} alt="Logo" className="Footer-logo" />
             <p>Fertec Solutions<br/>NIT: xxxxxxxx</p>
-            <p>749 0944<br/>Celular: +57 310 853 0408<br/>Whatsapp: +57 310 853 0408</p>
-            <p>E-mail: ventas@Fertec.com administrativo@Fertec.com</p>
+            <p>
+              <a href="https://wa.me/573108530408" target="_blank" rel="noopener noreferrer">Celular/WhatsApp: +57 310 853 0408</a><br/>
+            </p>
+            <p>
+              <a href="mailto:ventas@Fertec.com">ventas@Fertec.com</a><br/>
+              <a href="mailto:administrativo@Fertec.com">administrativo@Fertec.com</a>
+            </p>
             <div className="Footer-social">
-              <span> {/*  íconos sociales  */} </span>
+              <span> {/* íconos sociales */} </span>
             </div>
           </div>
           <div className="Footer-col">
             <h3>Acerca de nosotros</h3>
             <ul>
-              <li>Nuestra empresa</li>
-              <li>Catálogos</li>
-              <li>Contáctanos</li>
+              <li><a href="/nuestra-marca.pdf" download>Nuestra empresa</a></li>
+              <li><a href="https://wa.me/573108530408" target="_blank" rel="noopener noreferrer">Contáctanos</a></li>
             </ul>
           </div>
           <div className="Footer-col">
             <h3>Políticas</h3>
             <ul>
-              <li>Términos y condiciones generales</li>
+              <li><a href="https://www.sic.gov.co/terminos-y-condiciones-generales" target="_blank" rel="noopener noreferrer">Términos y condiciones generales</a></li>
               <li>Métodos y condiciones de pago</li>
-              <li>Política de envío, cambios y devoluciones</li>
-              <li>Política de protección de datos</li>
-              <li>PQRS</li>
+              <li><a href="https://www.sic.gov.co/politica-de-proteccion-de-datos-personales" target="_blank" rel="noopener noreferrer">Política de protección de datos</a></li>
             </ul>
           </div>
           <div className="Footer-col">
             <h3>Directorios</h3>
             <ul>
-              <li>Instaladores</li>
+              <li><Link to="/instaladores">Instaladores</Link></li>
             </ul>
           </div>
         </div>

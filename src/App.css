@@ -1,3 +1,13 @@
+/* Enlaces del footer en negro, sin subrayado ni color azul */
+.Footer-col a {
+  color: #fff !important;
+  text-decoration: none !important;
+  transition: color 0.2s;
+}
+.Footer-col a:hover {
+  color: #fff !important;
+  text-decoration: underline !important;
+}
 .Catalogo-badge {
   display: inline-block;
   padding: 2px 10px;
