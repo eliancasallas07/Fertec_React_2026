@@ -9,6 +9,7 @@ import CerradurasHuella from "../pages/CerradurasHuella";
 import CerradurasDigitales from "../pages/CerradurasDigitales";
 import CerradurasCodigo from "../pages/CerradurasCodigo";
 import CerradurasBluetooth from "../pages/CerradurasBluetooth";
+import CerradurasManual from "../pages/CerradurasManual";
 
 const AppRoutes = () => (
   <Routes>
@@ -22,7 +23,9 @@ const AppRoutes = () => (
     <Route path="/cerraduras_digitales" element={<CerradurasDigitales />} />
     <Route path="/cerraduras_codigo" element={<CerradurasCodigo />} />
     <Route path="/cerraduras_bluetooth" element={<CerradurasBluetooth />} />
+    <Route path="/cerraduras_manual" element={<CerradurasManual />} />
   </Routes>
+
 );
 
 export default AppRoutes;

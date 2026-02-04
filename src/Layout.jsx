@@ -108,78 +108,6 @@ const CERRADURAS = [
     desc: 'Precio de venta $500.000\nColor negro\nCerradura tipo manual\nIdeal para hogares, hotelería, Airbag\nPuede ser instalada en puertas de metal y madera',
     descuento: '-17%'
   },
-  {
-    key: 'bluetooth',
-    nombre: 'Cerradura Bluetooth',
-    marca: 'Samsung',
-    categoria: 'Cerraduras Bluetooth',
-    precio: 690000,
-    precioTachado: 1200000,
-    acceso: 'Bluetooth',
-    color: 'Plateado',
-    nivel: 'Intermedia',
-    img: cerraduraBluetooth,
-    desc: 'Conexión inalámbrica para control desde tu smartphone.',
-    badge: 'RECOMENDADO',
-    descuento: '-43%'
-  },
-  {
-    key: 'digital',
-    nombre: 'Cerradura Digital',
-    marca: 'Yale',
-    categoria: 'Cerraduras Digitales',
-    precio: 590000,
-    precioTachado: 1000000,
-    acceso: 'Código',
-    color: 'Negro Mate',
-    nivel: 'Básica',
-    img: cerraduraDigital,
-    desc: 'Apertura con código numérico y máxima seguridad.',
-    badge: 'MÁS VENDIDO',
-    descuento: '-41%'
-  },
-  {
-    key: 'huella',
-    nombre: 'Cerradura Huella',
-    marca: 'MarcaFertec',
-    categoria: 'Cerraduras Huella',
-    precio: 850000,
-    precioTachado: 1400000,
-    acceso: 'Huella',
-    color: 'Gris',
-    nivel: 'Intermedia',
-    img: cerraduraHuella,
-    desc: 'Acceso rápido y seguro con huella digital.',
-    descuento: '-39%'
-  },
-  {
-    key: 'inteligente',
-    nombre: 'Cerradura Inteligente',
-    marca: 'Philips',
-    categoria: 'Cerraduras Inteligentes',
-    precio: 990000,
-    precioTachado: 1600000,
-    acceso: 'Wi-Fi',
-    color: 'Dorado',
-    nivel: 'Premium',
-    img: cerraduraInteligente,
-    desc: 'Control total desde app móvil y múltiples accesos.',
-    descuento: '-38%'
-  },
-  {
-    key: 'tarjeta',
-    nombre: 'Cerradura Tarjeta',
-    marca: 'Samsung',
-    categoria: 'Cerraduras Tarjeta',
-    precio: 670000,
-    precioTachado: 1100000,
-    acceso: 'Tarjeta',
-    color: 'Plateado',
-    nivel: 'Básica',
-    img: cerraduraTarjeta,
-    desc: 'Ideal para hoteles y oficinas, acceso con tarjeta.',
-    descuento: '-39%'
-  },
 ];
 
 // Componente de burbuja de chatbot sencillo
@@ -382,12 +310,7 @@ const Layout = ({ children, titulo }) => {
         >
           Contáctanos
         </a>
-        <div className="Nav-search">
-          <input type="text" placeholder="Buscar..." />
-          <span className="Nav-search-icon">
-            <img src={lupaIcon} alt="Buscar" className="Nav-search-img" />
-          </span>
-        </div>
+        {/* Buscador en nav eliminado */}
       </nav>
       <main className="Catalogo-main">
         {/* Sección independiente para el título */}

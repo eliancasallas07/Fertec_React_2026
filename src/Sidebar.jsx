@@ -4,6 +4,7 @@ const Sidebar = ({ open, onClose }) => (
   <div className={`Sidebar${open ? ' open' : ''}`}>  
     <button className="Sidebar-close" onClick={onClose}>×</button>
     <ul className="Sidebar-list">
+      <li><Link to="/" onClick={onClose}>Home</Link></li>
       <li><Link to="/contactenos" onClick={onClose}>Contáctanos</Link></li>
       <li><Link to="/cerraduras_bluetooth" onClick={onClose}>Cerraduras Bluetooth</Link></li>
       <li><Link to="/cerraduras_codigo" onClick={onClose}>Cerraduras Código</Link></li>
