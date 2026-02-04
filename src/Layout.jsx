@@ -2,6 +2,8 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import logo from './img/logo.png';
+import userIcon from './img/user.png';
+import cartIcon from './img/carrito_compras.png';
 import lupaIcon from './img/lupa.png';
 import cerraduraBluetooth from './img/cerradura_bluetooth.png';
 import cerraduraDigital from './img/cerradura_digital.png';
@@ -238,33 +240,32 @@ const Layout = ({ children, titulo }) => {
         <h1>Catálogo de Cerraduras</h1>
       </header>
       <nav className="Nav-bar">
-        <div className="Nav-bar-item">
-          <div className="Nav-menu-icon" onClick={() => setSidebarOpen(true)}>
-            <span className="Nav-bar-icon"></span>
-            <span className="Nav-bar-icon"></span>
-            <span className="Nav-bar-icon"></span>
-          </div>
+        <div className="Nav-menu-icon" onClick={() => setSidebarOpen(true)}>
+          <span className="Nav-bar-icon"></span>
+          <span className="Nav-bar-icon"></span>
+          <span className="Nav-bar-icon"></span>
         </div>
-        <div className="Nav-bar-item">
-          <div className="Nav-logo-text">FERTEC</div>
+        <div className="Nav-logo-text">FERTEC</div>
+        <a
+          href="https://wa.me/573108530408"
+          className="Nav-contact-btn Nav-contact-btn-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Contáctanos
+        </a>
+        <div className="Nav-search">
+          <input type="text" placeholder="Buscar..." />
+          <span className="Nav-search-icon">
+            <img src={lupaIcon} alt="Buscar" className="Nav-search-img" />
+          </span>
         </div>
-        <div className="Nav-bar-item">
-          <a
-            href="https://wa.me/573108530408"
-            className="Nav-contact-btn Nav-contact-btn-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Contáctanos
-          </a>
+        <div className="Nav-user">
+          <img src={userIcon} alt="Perfil" className="Nav-user-icon" />
         </div>
-        <div className="Nav-bar-item Nav-bar-item-search">
-          <div className="Nav-search">
-            <input type="text" placeholder="Buscar..." />
-            <span className="Nav-search-icon">
-              <img src={lupaIcon} alt="Buscar" className="Nav-search-img" />
-            </span>
-          </div>
+        <div className="Nav-cart">
+          <img src={cartIcon} alt="Carrito" className="Nav-cart-icon" />
+          <span className="Nav-cart-badge">0</span>
         </div>
       </nav>
       <main className="Catalogo-main">
@@ -338,36 +339,34 @@ const Layout = ({ children, titulo }) => {
           <div className="Footer-col">
             <img src={logo} alt="Logo" className="Footer-logo" />
             <p>Fertec Solutions<br/>NIT: xxxxxxxx</p>
-            <p>
-              <a href="https://wa.me/573108530408" target="_blank" rel="noopener noreferrer">Celular/WhatsApp: +57 310 853 0408</a><br/>
-            </p>
-            <p>
-              <a href="mailto:ventas@Fertec.com">ventas@Fertec.com</a><br/>
-              <a href="mailto:administrativo@Fertec.com">administrativo@Fertec.com</a>
-            </p>
+            <p>749 0944<br/>Celular: +57 310 853 0408<br/>Whatsapp: +57 310 853 0408</p>
+            <p>E-mail: ventas@Fertec.com administrativo@Fertec.com</p>
             <div className="Footer-social">
-              <span> {/* íconos sociales */} </span>
+              <span> {/*  íconos sociales  */} </span>
             </div>
           </div>
           <div className="Footer-col">
             <h3>Acerca de nosotros</h3>
             <ul>
-              <li><a href="/nuestra-marca.pdf" download>Nuestra empresa</a></li>
-              <li><a href="https://wa.me/573108530408" target="_blank" rel="noopener noreferrer">Contáctanos</a></li>
+              <li>Nuestra empresa</li>
+              <li>Catálogos</li>
+              <li>Contáctanos</li>
             </ul>
           </div>
           <div className="Footer-col">
             <h3>Políticas</h3>
             <ul>
-              <li><a href="https://www.sic.gov.co/terminos-y-condiciones-generales" target="_blank" rel="noopener noreferrer">Términos y condiciones generales</a></li>
+              <li>Términos y condiciones generales</li>
               <li>Métodos y condiciones de pago</li>
-              <li><a href="https://www.sic.gov.co/politica-de-proteccion-de-datos-personales" target="_blank" rel="noopener noreferrer">Política de protección de datos</a></li>
+              <li>Política de envío, cambios y devoluciones</li>
+              <li>Política de protección de datos</li>
+              <li>PQRS</li>
             </ul>
           </div>
           <div className="Footer-col">
             <h3>Directorios</h3>
             <ul>
-              <li><Link to="/instaladores">Instaladores</Link></li>
+              <li>Instaladores</li>
             </ul>
           </div>
         </div>
