@@ -2,8 +2,6 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import logo from './img/logo.png';
-import userIcon from './img/user.png';
-import cartIcon from './img/carrito_compras.png';
 import lupaIcon from './img/lupa.png';
 import cerraduraBluetooth from './img/cerradura_bluetooth.png';
 import cerraduraDigital from './img/cerradura_digital.png';
@@ -260,13 +258,6 @@ const Layout = ({ children, titulo }) => {
             <img src={lupaIcon} alt="Buscar" className="Nav-search-img" />
           </span>
         </div>
-        <div className="Nav-user">
-          <img src={userIcon} alt="Perfil" className="Nav-user-icon" />
-        </div>
-        <div className="Nav-cart">
-          <img src={cartIcon} alt="Carrito" className="Nav-cart-icon" />
-          <span className="Nav-cart-badge">0</span>
-        </div>
       </nav>
       <main className="Catalogo-main">
         {/* Sección independiente para el título */}
@@ -283,36 +274,42 @@ const Layout = ({ children, titulo }) => {
             <div className="Filtros-group">
               <h3 className="Filtros-subtitle">Marca</h3>
               <hr />
-              {['Yale','Samsung','MarcaFertec','Philips'].map(m => (
+              {['k7','k7plus','k9','k86','T8','j23','a89'].map(m => (
                 <label key={m}><input type="checkbox" checked={filtro.tipo==='marca'&&filtro.valor===m} onChange={()=>handleFiltroChange('marca',m)} /> {m}</label>
               ))}
             </div>
-            <h3 className="Filtros-subtitle">Categorías</h3>
+            <h3 className="Filtros-subtitle">🔐 Tipo de tecnología</h3>
             <hr />
-            {['Cerraduras Inteligentes','Cerraduras Digitales','Cerraduras Huella','Cerraduras Bluetooth','Cerraduras Tarjeta','Cerraduras Código'].map(c => (
-              <label key={c}><input type="checkbox" checked={filtro.tipo==='categoria'&&filtro.valor===c} onChange={()=>handleFiltroChange('categoria',c)} /> {c}</label>
+            {['Cerraduras Manuales','Cerraduras Inteligentes','Cerraduras Automáticas'].map(tipo => (
+              <label key={tipo}><input type="checkbox" checked={filtro.tipo==='tecnologia'&&filtro.valor===tipo} onChange={()=>handleFiltroChange('tecnologia',tipo)} /> {tipo}</label>
             ))}
           </div>
           <div className="Filtros-group">
-            <h3 className="Filtros-subtitle">Precio</h3>
+            <h3 className="Filtros-subtitle"> Precio</h3>
             <hr />
             {['$150.000 — $300.000','$300.001 — $600.000','$600.001 — $1.000.000','$1.000.001 — $2.000.000','Más de $2.000.000'].map(p => (
               <label key={p}><input type="checkbox" checked={filtro.tipo==='precio'&&filtro.valor===p} onChange={()=>handleFiltroChange('precio',p)} /> {p}</label>
             ))}
           </div>
           <div className="Filtros-group">
-            <h3 className="Filtros-subtitle">Acceso</h3>
-            <div className="Filtros-acceso-list">
-              {['Wi-Fi','Bluetooth','Huella','Código','Tarjeta'].map(a => (
-                <button key={a} className={`Filtros-acceso-btn${accesoActivo===a?' active':''}`} onClick={()=>handleAcceso(a)}>{a}</button>
-              ))}
-            </div>
+            <h3 className="Filtros-subtitle"> Método de apertura</h3>
+            <hr />
+            {['Huella digital','Código / Clave','Tarjeta','Bluetooth / App','Llave mecánica','Reconocimiento facial'].map(metodo => (
+              <label key={metodo}><input type="checkbox" checked={filtro.tipo==='apertura'&&filtro.valor===metodo} onChange={()=>handleFiltroChange('apertura',metodo)} /> {metodo}</label>
+            ))}
           </div>
           <div className="Filtros-group">
-            <h3 className="Filtros-subtitle">Color</h3>
+            <h3 className="Filtros-subtitle"> Uso recomendado</h3>
             <hr />
-            {['Negro Mate','Cobre','Plateado','Níquel','Dorado','Gris','Bronce','Blanco'].map(col => (
-              <label key={col}><input type="checkbox" checked={filtro.tipo==='color'&&filtro.valor===col} onChange={()=>handleFiltroChange('color',col)} /> {col}</label>
+            {['Hogar / Apartamento','Oficinas y negocios','Portones y garajes','Puertas de seguridad'].map(uso => (
+              <label key={uso}><input type="checkbox" checked={filtro.tipo==='uso'&&filtro.valor===uso} onChange={()=>handleFiltroChange('uso',uso)} /> {uso}</label>
+            ))}
+          </div>
+          <div className="Filtros-group">
+            <h3 className="Filtros-subtitle"> Nivel</h3>
+            <hr />
+            {['Básica','Intermedia','Premium'].map(nivel => (
+              <label key={nivel}><input type="checkbox" checked={filtro.tipo==='nivel'&&filtro.valor===nivel} onChange={()=>handleFiltroChange('nivel',nivel)} /> {nivel}</label>
             ))}
           </div>
         </section>
