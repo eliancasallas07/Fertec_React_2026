@@ -10,6 +10,97 @@ import cerraduraInteligente from './img/cerradura_inteligente.png';
 import cerraduraTarjeta from './img/cerradura_tarjeta.png';
 // Datos de cerraduras
 const CERRADURAS = [
+              {
+                key: 'a89',
+                nombre: 'Cerradura A89',
+                marca: 'a89',
+                categoria: 'Cerraduras Automáticas',
+                precio: 1500000,
+                precioTachado: 1800000,
+                acceso: 'Reconocimiento facial, Automática',
+                color: 'Negro Brillante',
+                img: [require('./videos/a89.mp4'), require('./videos/a89-2.mp4'), require('./videos/a89-3.mp4')],
+                desc: 'Automática\nIdeal para puertas de seguridad\nPuede ser instalada también en puertas de madera y metal\nReconocimiento facial\nColor: Negro Brillante\nCámara y pantalla\nVideo portero\nTimbre incorporado\nAlimentación: Batería de litio recargable\nPasador nocturno',
+                descuento: '-17%'
+              },
+            {
+              key: 'j23',
+              nombre: 'Cerradura J23',
+              marca: 'j23',
+              categoria: 'Cerraduras Automáticas',
+              precio: 650000,
+              precioTachado: 800000,
+              acceso: 'Huella, Clave, Tarjeta, Llave, Remoto',
+              color: 'Negro',
+              img: [require('./img/j23.jpeg'), require('./img/j23-2.jpeg')],
+              desc: 'Cerradura Automática\nIdeal para portones a la intemperie, puertas de garaje\nCertificación IP67\nMétodos de apertura:\nHuella\nClave\nTarjeta\nLlave de seguridad\nRemotamente desde el celular.',
+              descuento: '-19%'
+            },
+          {
+            key: 't8',
+            nombre: 'Cerradura T8',
+            marca: 'T8',
+            categoria: 'Cerraduras Inteligentes',
+            precio: 280000,
+            precioTachado: 350000,
+            acceso: 'Huella, Clave, Llave, Bluetooth',
+            color: 'Negro',
+            img: [require('./img/t8.jpeg'), require('./img/t8-2.jpeg'), require('./videos/t8-3.mp4')],
+            desc: 'Ideal para alcobas, oficinas y negocios.\nMétodos de apertura:\nHuella\nClave\nLlave de seguridad\nApertura remota por Bluetooth.',
+            descuento: '-20%'
+          },
+        {
+          key: 'k86',
+          nombre: 'Cerradura K86',
+          marca: 'k86',
+          categoria: 'Cerraduras Manuales',
+          precio: 900000,
+          precioTachado: 1100000,
+          acceso: 'Manual',
+          color: 'Negro',
+          img: [require('./img/k86.jpeg'), require('./img/k86-2.jpeg'), require('./videos/k86-3.mp4')],
+          desc: 'Color: Negro.\nCámara y pantalla.\nPuede ser instalada en puertas de madera y metal.\nIdeal para casas residenciales y apartamentos.\nAlimentación: Batería de Litio Recargable.',
+          descuento: '-18%'
+        },
+      {
+        key: 'k9',
+        nombre: 'Cerradura K9',
+        marca: 'k9',
+        categoria: 'Cerraduras Manuales',
+        precio: 700000,
+        precioTachado: 850000,
+        acceso: 'Manual',
+        color: 'Negro',
+        img: [require('./img/k9.jpeg'), require('./img/k9-2.jpeg'), require('./img/k9-3.jpeg')],
+        desc: 'Color: Negro.\nPuede ser instalada en puertas de madera y metal.\nIdeal para casas residenciales y apartamentos.',
+        descuento: '-18%'
+      },
+    {
+      key: 'k7plus',
+      nombre: 'Cerradura K7 Plus',
+      marca: 'k7plus',
+      categoria: 'Cerraduras Manuales',
+      precio: 700000,
+      precioTachado: 850000,
+      acceso: 'Manual',
+      color: 'Negro',
+      img: [require('./img/k7.jpeg'), require('./img/k7-2.jpeg'), require('./videos/k7-3.mp4')],
+      desc: 'Color: Negro.\nPuede ser instalada en puertas de madera y metal.\nIncluye Cámara y pantalla.\nCuenta con batería de litio recargable.',
+      descuento: '-18%'
+    },
+  {
+    key: 'k7',
+    nombre: 'Cerradura K7',
+    marca: 'k7',
+    categoria: 'Cerraduras Manuales',
+    precio: 500000,
+    precioTachado: 600000,
+    acceso: 'Manual',
+    color: 'Negro',
+    img: [require('./img/k7.jpeg'), require('./img/k7-2.jpeg'), require('./videos/k7-3.mp4')],
+    desc: 'Precio de venta $500.000\nColor negro\nCerradura tipo manual\nIdeal para hogares, hotelería, Airbag\nPuede ser instalada en puertas de metal y madera',
+    descuento: '-17%'
+  },
   {
     key: 'bluetooth',
     nombre: 'Cerradura Bluetooth',
@@ -278,7 +369,7 @@ const Layout = ({ children, titulo }) => {
                 <label key={m}><input type="checkbox" checked={filtro.tipo==='marca'&&filtro.valor===m} onChange={()=>handleFiltroChange('marca',m)} /> {m}</label>
               ))}
             </div>
-            <h3 className="Filtros-subtitle">🔐 Tipo de tecnología</h3>
+            <h3 className="Filtros-subtitle"> Tipo de tecnología</h3>
             <hr />
             {['Cerraduras Manuales','Cerraduras Inteligentes','Cerraduras Automáticas'].map(tipo => (
               <label key={tipo}><input type="checkbox" checked={filtro.tipo==='tecnologia'&&filtro.valor===tipo} onChange={()=>handleFiltroChange('tecnologia',tipo)} /> {tipo}</label>
@@ -319,7 +410,22 @@ const Layout = ({ children, titulo }) => {
           {resultados.map((c, i) => (
             <div className="Catalogo-card" key={c.key}>
               {c.badge && <span className={`Catalogo-badge Catalogo-badge-${c.badge==='RECOMENDADO'?'recomendado':'masvendido'}`}>{c.badge}</span>}
-              <img src={c.img} alt={c.nombre} className="Catalogo-img Catalogo-img-small" />
+              {Array.isArray(c.img) ? (
+                <div className="Catalogo-img-multi">
+                  {c.img.map((media, idx) => (
+                    media.endsWith('.mp4') ? (
+                      <video key={idx} className="Catalogo-img Catalogo-img-small" controls poster={c.img[0]} onClick={e => e.target.requestFullscreen()}>
+                        <source src={media} type="video/mp4" />
+                        Tu navegador no soporta el video.
+                      </video>
+                    ) : (
+                      <img key={idx} src={media} alt={c.nombre + '-' + (idx+1)} className="Catalogo-img Catalogo-img-small" onClick={e => e.target.requestFullscreen()} />
+                    )
+                  ))}
+                </div>
+              ) : (
+                <img src={c.img} alt={c.nombre} className="Catalogo-img Catalogo-img-small" />
+              )}
               <h2 className="Catalogo-titulo">{c.nombre}</h2>
               <p className="Catalogo-desc">{c.desc}</p>
               <div className="Catalogo-precios">
