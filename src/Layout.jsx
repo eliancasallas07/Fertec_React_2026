@@ -7,6 +7,7 @@ import gmailIcon from './img/gmail.png';
 import instagramIcon from './img/instagram.png';
 import nequiIcon from './img/nequi.png';
 import mastercardIcon from './img/mastercard.png';
+import logoTransparente from './img/Logo-Transparente.png';
 import lupaIcon from './img/lupa.png';
 import burbujaAudio from './audio/burbuja-sonido.mp3';
 import cerraduraBluetooth from './img/cerradura_bluetooth.png';
@@ -118,43 +119,97 @@ const CERRADURAS = [
 
 // Componente de burbuja de chatbot sencillo
 function ChatBotBubble() {
+
   const [open, setOpen] = useState(false);
   const audioRef = React.useRef(null);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
-    { from: "bot", text: "¡Hola! Soy el asistente Fertec. ¿Sobre qué filtro deseas consultar?\n1. Marca\n2. Categorías\n3. Precio\n4. Acceso\n5. Color" }
+    { from: "bot", text: "¡Hola! Soy el asistente Fertec. ¿Qué tipo de cerradura buscas?\n1. Automáticas\n2. Inteligentes\n3. Manuales" }
   ]);
-  const [step, setStep] = useState(0); // 0: inicio, 1: marca, 2: categoría, etc.
+  const [step, setStep] = useState(0); // 0: categoría, 1: marca, 2: apertura, 3: nivel, 4: precio, 99: fin
+  const [filtros, setFiltros] = useState({});
 
-  // Opciones de cada filtro
-  const opciones = [
-    null,
-    ["Yale", "Samsung", "MarcaFertec", "Philips"],
-    ["Cerraduras Inteligentes", "Cerraduras Digitales", "Cerraduras Huella", "Cerraduras Bluetooth", "Cerraduras Tarjeta", "Cerraduras Código"],
-    ["$150.000 — $300.000", "$300.001 — $600.000", "$600.001 — $1.000.000", "$1.000.001 — $2.000.000", "Más de $2.000.000"],
-    ["Wi-Fi", "Bluetooth", "Huella", "Código", "Tarjeta"],
-    ["Negro Mate", "Cobre", "Plateado", "Níquel", "Dorado", "Gris", "Bronce", "Blanco"]
-  ];
+  // Utilidades para obtener opciones según el filtro anterior
+  const getCategorias = () => {
+    return Array.from(new Set(CERRADURAS.map(c => c.categoria)));
+  };
+  const getMarcas = (categoria) => {
+    return Array.from(new Set(CERRADURAS.filter(c => c.categoria === categoria).map(c => c.marca)));
+  };
+  const getAperturas = (categoria, marca) => {
+    return Array.from(new Set(CERRADURAS.filter(c => c.categoria === categoria && c.marca === marca).map(c => c.acceso)));
+  };
+  const getNiveles = (categoria, marca, acceso) => {
+    return Array.from(new Set(CERRADURAS.filter(c => c.categoria === categoria && c.marca === marca && c.acceso === acceso).map(c => c.nivel)));
+  };
+  const getPrecios = (categoria, marca, acceso, nivel) => {
+    return Array.from(new Set(CERRADURAS.filter(c => c.categoria === categoria && c.marca === marca && c.acceso === acceso && c.nivel === nivel).map(c => c.precio)));
+  };
 
   const handleSend = () => {
     if (input.trim() === "") return;
     const userMsg = { from: "user", text: input };
     let botMsg = null;
     let nextStep = step;
-    // Primer paso: elegir filtro
-    if (step === 0) {
-      const num = parseInt(input);
-      if (num >= 1 && num <= 5) {
-        nextStep = num;
-        botMsg = { from: "bot", text: "Responde solo con 1 (Sí) o 2 (No)." };
+    let newFiltros = { ...filtros };
+
+    if (step === 0) { // Categoría
+      const categorias = getCategorias();
+      let cat = categorias[parseInt(input) - 1] || categorias.find(c => c.toLowerCase().includes(input.toLowerCase()));
+      if (cat) {
+        newFiltros.categoria = cat;
+        const marcas = getMarcas(cat);
+        botMsg = { from: "bot", text: `¿Qué marca prefieres?\n` + marcas.map((m, i) => `${i + 1}. ${m}`).join("\n") };
+        nextStep = 1;
+      } else {
+        botMsg = { from: "bot", text: "Por favor, elige una categoría válida (número o nombre)." };
+      }
+    } else if (step === 1) { // Marca
+      const marcas = getMarcas(filtros.categoria);
+      let marca = marcas[parseInt(input) - 1] || marcas.find(m => m.toLowerCase().includes(input.toLowerCase()));
+      if (marca) {
+        newFiltros.marca = marca;
+        const aperturas = getAperturas(filtros.categoria, marca);
+        botMsg = { from: "bot", text: `¿Qué método de apertura prefieres?\n` + aperturas.map((a, i) => `${i + 1}. ${a}`).join("\n") };
+        nextStep = 2;
+      } else {
+        botMsg = { from: "bot", text: "Por favor, elige una marca válida (número o nombre)." };
+      }
+    } else if (step === 2) { // Método de apertura
+      const aperturas = getAperturas(filtros.categoria, filtros.marca);
+      let acceso = aperturas[parseInt(input) - 1] || aperturas.find(a => a.toLowerCase().includes(input.toLowerCase()));
+      if (acceso) {
+        newFiltros.acceso = acceso;
+        const niveles = getNiveles(filtros.categoria, filtros.marca, acceso);
+        botMsg = { from: "bot", text: `¿Qué nivel buscas?\n` + niveles.map((n, i) => `${i + 1}. ${n}`).join("\n") };
+        nextStep = 3;
+      } else {
+        botMsg = { from: "bot", text: "Por favor, elige un método de apertura válido (número o nombre)." };
+      }
+    } else if (step === 3) { // Nivel
+      const niveles = getNiveles(filtros.categoria, filtros.marca, filtros.acceso);
+      let nivel = niveles[parseInt(input) - 1] || niveles.find(n => n.toLowerCase().includes(input.toLowerCase()));
+      if (nivel) {
+        newFiltros.nivel = nivel;
+        // Mostrar resultado
+        const resultados = CERRADURAS.filter(c => c.categoria === newFiltros.categoria && c.marca === newFiltros.marca && c.acceso === newFiltros.acceso && c.nivel === nivel);
+        if (resultados.length > 0) {
+          botMsg = { from: "bot", text: `¡Te recomiendo la siguiente cerradura!\n${resultados[0].nombre} - ${resultados[0].desc}` };
+        } else {
+          botMsg = { from: "bot", text: "No encontré una cerradura exacta con esos criterios. ¿Quieres intentar de nuevo?" };
+        }
+        nextStep = 99;
+      } else {
+        botMsg = { from: "bot", text: "Por favor, elige un nivel válido (número o nombre)." };
       }
     } else {
-      botMsg = { from: "bot", text: "¡Gracias por usar el asistente Fertec! Si necesitas más ayuda, vuelve a escribir." };
+      botMsg = { from: "bot", text: "¡Gracias por usar el asistente Fertec! Si necesitas más ayuda, vuelve a escribir o recarga la página para reiniciar la conversación." };
       nextStep = 99;
     }
     setMessages([...messages, userMsg, botMsg]);
     setInput("");
     setStep(nextStep);
+    setFiltros(newFiltros);
   };
 
   // Función para abrir el chat y reproducir el sonido
@@ -421,7 +476,7 @@ const Layout = ({ children, titulo }) => {
         )}
       </main>
       <footer className="Catalogo-footer">
-        <div className="Footer-columns">
+        <div className="Footer-columns" style={{position: 'relative', zIndex: 1}}>
           <div className="Footer-col">
             <img src={logo} alt="Logo" className="Footer-logo" />
             <p>Fertec Solutions<br/>NIT: xxxxxxxx</p>

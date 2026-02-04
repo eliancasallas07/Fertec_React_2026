@@ -788,6 +788,29 @@ a.Whatsapp-float img {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.App-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('./img/Logo-Transparente.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 60% auto;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.App-header > * {
+  position: relative;
+  z-index: 2;
 }
 
 .App-link {
@@ -943,6 +966,34 @@ a.Whatsapp-float img {
   padding: 2rem 0 0 0;
   color: #fff;
   min-height: 120px;
+  position: relative;
+  z-index: 1;
+}
+
+.Catalogo-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('./img/Logo-Transparente.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 60% auto;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.Catalogo-footer > * {
+  position: relative;
+  z-index: 2;
+}
+
+.Catalogo-footer > * {
+  position: relative;
+  z-index: 2;
 }
 
 .Footer-columns {
