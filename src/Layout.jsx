@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import logo from './img/logo.png';
 import lupaIcon from './img/lupa.png';
@@ -19,6 +19,7 @@ const CERRADURAS = [
                 precioTachado: 1800000,
                 acceso: 'Reconocimiento facial, Automática',
                 color: 'Negro Brillante',
+                nivel: 'Premium',
                 img: [require('./videos/a89.mp4'), require('./videos/a89-2.mp4'), require('./videos/a89-3.mp4')],
                 desc: 'Automática\nIdeal para puertas de seguridad\nPuede ser instalada también en puertas de madera y metal\nReconocimiento facial\nColor: Negro Brillante\nCámara y pantalla\nVideo portero\nTimbre incorporado\nAlimentación: Batería de litio recargable\nPasador nocturno',
                 descuento: '-17%'
@@ -32,6 +33,7 @@ const CERRADURAS = [
               precioTachado: 800000,
               acceso: 'Huella, Clave, Tarjeta, Llave, Remoto',
               color: 'Negro',
+              nivel: 'Intermedia',
               img: [require('./img/j23.jpeg'), require('./img/j23-2.jpeg')],
               desc: 'Cerradura Automática\nIdeal para portones a la intemperie, puertas de garaje\nCertificación IP67\nMétodos de apertura:\nHuella\nClave\nTarjeta\nLlave de seguridad\nRemotamente desde el celular.',
               descuento: '-19%'
@@ -45,6 +47,7 @@ const CERRADURAS = [
             precioTachado: 350000,
             acceso: 'Huella, Clave, Llave, Bluetooth',
             color: 'Negro',
+            nivel: 'Básica',
             img: [require('./img/t8.jpeg'), require('./img/t8-2.jpeg'), require('./videos/t8-3.mp4')],
             desc: 'Ideal para alcobas, oficinas y negocios.\nMétodos de apertura:\nHuella\nClave\nLlave de seguridad\nApertura remota por Bluetooth.',
             descuento: '-20%'
@@ -58,6 +61,7 @@ const CERRADURAS = [
           precioTachado: 1100000,
           acceso: 'Manual',
           color: 'Negro',
+          nivel: 'Intermedia',
           img: [require('./img/k86.jpeg'), require('./img/k86-2.jpeg'), require('./videos/k86-3.mp4')],
           desc: 'Color: Negro.\nCámara y pantalla.\nPuede ser instalada en puertas de madera y metal.\nIdeal para casas residenciales y apartamentos.\nAlimentación: Batería de Litio Recargable.',
           descuento: '-18%'
@@ -71,6 +75,7 @@ const CERRADURAS = [
         precioTachado: 850000,
         acceso: 'Manual',
         color: 'Negro',
+        nivel: 'Básica',
         img: [require('./img/k9.jpeg'), require('./img/k9-2.jpeg'), require('./img/k9-3.jpeg')],
         desc: 'Color: Negro.\nPuede ser instalada en puertas de madera y metal.\nIdeal para casas residenciales y apartamentos.',
         descuento: '-18%'
@@ -84,6 +89,7 @@ const CERRADURAS = [
       precioTachado: 850000,
       acceso: 'Manual',
       color: 'Negro',
+      nivel: 'Intermedia',
       img: [require('./img/k7.jpeg'), require('./img/k7-2.jpeg'), require('./videos/k7-3.mp4')],
       desc: 'Color: Negro.\nPuede ser instalada en puertas de madera y metal.\nIncluye Cámara y pantalla.\nCuenta con batería de litio recargable.',
       descuento: '-18%'
@@ -97,6 +103,7 @@ const CERRADURAS = [
     precioTachado: 600000,
     acceso: 'Manual',
     color: 'Negro',
+    nivel: 'Básica',
     img: [require('./img/k7.jpeg'), require('./img/k7-2.jpeg'), require('./videos/k7-3.mp4')],
     desc: 'Precio de venta $500.000\nColor negro\nCerradura tipo manual\nIdeal para hogares, hotelería, Airbag\nPuede ser instalada en puertas de metal y madera',
     descuento: '-17%'
@@ -110,6 +117,7 @@ const CERRADURAS = [
     precioTachado: 1200000,
     acceso: 'Bluetooth',
     color: 'Plateado',
+    nivel: 'Intermedia',
     img: cerraduraBluetooth,
     desc: 'Conexión inalámbrica para control desde tu smartphone.',
     badge: 'RECOMENDADO',
@@ -124,6 +132,7 @@ const CERRADURAS = [
     precioTachado: 1000000,
     acceso: 'Código',
     color: 'Negro Mate',
+    nivel: 'Básica',
     img: cerraduraDigital,
     desc: 'Apertura con código numérico y máxima seguridad.',
     badge: 'MÁS VENDIDO',
@@ -138,6 +147,7 @@ const CERRADURAS = [
     precioTachado: 1400000,
     acceso: 'Huella',
     color: 'Gris',
+    nivel: 'Intermedia',
     img: cerraduraHuella,
     desc: 'Acceso rápido y seguro con huella digital.',
     descuento: '-39%'
@@ -151,6 +161,7 @@ const CERRADURAS = [
     precioTachado: 1600000,
     acceso: 'Wi-Fi',
     color: 'Dorado',
+    nivel: 'Premium',
     img: cerraduraInteligente,
     desc: 'Control total desde app móvil y múltiples accesos.',
     descuento: '-38%'
@@ -164,6 +175,7 @@ const CERRADURAS = [
     precioTachado: 1100000,
     acceso: 'Tarjeta',
     color: 'Plateado',
+    nivel: 'Básica',
     img: cerraduraTarjeta,
     desc: 'Ideal para hoteles y oficinas, acceso con tarjeta.',
     descuento: '-39%'
@@ -199,30 +211,6 @@ function ChatBotBubble() {
       const num = parseInt(input);
       if (num >= 1 && num <= 5) {
         nextStep = num;
-        botMsg = {
-          from: "bot",
-          text: `Has elegido ${["", "Marca", "Categorías", "Precio", "Acceso", "Color"][num]}.\nElige una opción:\n` + opciones[num].map((op, i) => `${i+1}. ${op}`).join("\n")
-        };
-      } else {
-        botMsg = { from: "bot", text: "Por favor responde solo con el número de la opción (1-5)." };
-      }
-    } else if (step >= 1 && step <= 5) {
-      const num = parseInt(input);
-      if (num >= 1 && num <= opciones[step].length) {
-        botMsg = { from: "bot", text: `Has seleccionado: ${opciones[step][num-1]}\n¿Deseas consultar otro filtro?\n1. Sí\n2. No` };
-        nextStep = 10 + step; // paso de confirmación
-      } else {
-        botMsg = { from: "bot", text: `Por favor responde solo con el número de la opción (1-${opciones[step].length}).` };
-      }
-    } else if (step > 10 && step <= 15) {
-      // Confirmación para volver a filtrar
-      if (input.trim() === "1") {
-        botMsg = { from: "bot", text: "¿Sobre qué filtro deseas consultar?\n1. Marca\n2. Categorías\n3. Precio\n4. Acceso\n5. Color" };
-        nextStep = 0;
-      } else if (input.trim() === "2") {
-        botMsg = { from: "bot", text: "¡Gracias por usar el asistente Fertec! Si necesitas más ayuda, vuelve a escribir." };
-        nextStep = 99;
-      } else {
         botMsg = { from: "bot", text: "Responde solo con 1 (Sí) o 2 (No)." };
       }
     } else {
@@ -273,18 +261,11 @@ const Layout = ({ children, titulo }) => {
 
   // Estado para filtros
   const [filtro, setFiltro] = useState({ tipo: '', valor: '' });
-  const [accesoActivo, setAccesoActivo] = useState('');
   const [resultados, setResultados] = useState(CERRADURAS);
 
   // Manejar selección de checkbox (solo uno a la vez)
   const handleFiltroChange = (tipo, valor) => {
     setFiltro({ tipo, valor });
-    setAccesoActivo('');
-  };
-  // Manejar selección de acceso (solo uno a la vez)
-  const handleAcceso = (valor) => {
-    setFiltro({ tipo: 'acceso', valor });
-    setAccesoActivo(valor);
   };
   // Buscar según filtro
   const buscar = () => {
@@ -294,25 +275,83 @@ const Layout = ({ children, titulo }) => {
       return;
     }
     if (filtro.tipo === 'marca') {
-      // Mostrar una cerradura al azar de esa marca
       const arr = CERRADURAS.filter(c => c.marca === filtro.valor);
       if (arr.length > 0) res = [arr[Math.floor(Math.random() * arr.length)]];
     } else if (filtro.tipo === 'categoria') {
-      // Mostrar todas las cerraduras de esa categoría
       res = CERRADURAS.filter(c => c.categoria === filtro.valor);
     } else if (filtro.tipo === 'precio') {
-      // Mostrar cerraduras en el rango
       if (filtro.valor === '$150.000 — $300.000') res = CERRADURAS.filter(c => c.precio >= 150000 && c.precio <= 300000);
       else if (filtro.valor === '$300.001 — $600.000') res = CERRADURAS.filter(c => c.precio > 300000 && c.precio <= 600000);
       else if (filtro.valor === '$600.001 — $1.000.000') res = CERRADURAS.filter(c => c.precio > 600000 && c.precio <= 1000000);
       else if (filtro.valor === '$1.000.001 — $2.000.000') res = CERRADURAS.filter(c => c.precio > 1000000 && c.precio <= 2000000);
       else if (filtro.valor === 'Más de $2.000.000') res = CERRADURAS.filter(c => c.precio > 2000000);
-    } else if (filtro.tipo === 'acceso') {
-      // Mostrar la cerradura correspondiente
-      res = CERRADURAS.filter(c => c.acceso === filtro.valor);
-      if (res.length > 0) res = [res[Math.floor(Math.random() * res.length)]];
+    } else if (filtro.tipo === 'apertura') {
+      // Buscar coincidencia flexible en acceso y descripción
+      const val = filtro.valor.toLowerCase();
+      res = CERRADURAS.filter(c => {
+        const acceso = c.acceso ? c.acceso.toLowerCase() : '';
+        const desc = c.desc ? c.desc.toLowerCase() : '';
+        // Permitir variantes como 'huella', 'huella digital', etc.
+        if (val.includes('huella')) {
+          return acceso.includes('huella') || desc.includes('huella');
+        }
+        if (val.includes('código') || val.includes('clave')) {
+          return acceso.includes('código') || acceso.includes('clave') || desc.includes('código') || desc.includes('clave');
+        }
+        if (val.includes('tarjeta')) {
+          return acceso.includes('tarjeta') || desc.includes('tarjeta');
+        }
+        if (val.includes('bluetooth')) {
+          return acceso.includes('bluetooth') || desc.includes('bluetooth');
+        }
+        if (val.includes('llave')) {
+          return acceso.includes('llave') || desc.includes('llave');
+        }
+        if (val.includes('facial')) {
+          return acceso.includes('facial') || desc.includes('facial');
+        }
+        // Búsqueda genérica si no es ninguno de los anteriores
+        return acceso.includes(val) || desc.includes(val);
+      });
+    } else if (filtro.tipo === 'uso') {
+      // Buscar coincidencia flexible en la descripción para uso recomendado
+      const val = filtro.valor.toLowerCase();
+      res = CERRADURAS.filter(c => {
+        const desc = c.desc ? c.desc.toLowerCase() : '';
+        if (val.includes('hogar') || val.includes('apartamento')) {
+          return desc.includes('hogar') || desc.includes('apartamento') || desc.includes('residencial');
+        }
+        if (val.includes('oficina') || val.includes('negocio')) {
+          return desc.includes('oficina') || desc.includes('negocio');
+        }
+        if (val.includes('porton') || val.includes('garaje')) {
+          return desc.includes('porton') || desc.includes('garaje');
+        }
+        if (val.includes('seguridad')) {
+          return desc.includes('seguridad');
+        }
+        // Búsqueda genérica si no es ninguno de los anteriores
+        return desc.includes(val);
+      });
+    } else if (filtro.tipo === 'nivel') {
+      // Coincidencia flexible para nivel (alto, medio, bajo, etc.)
+      const val = filtro.valor.toLowerCase();
+      res = CERRADURAS.filter(c => {
+        const nivel = c.nivel ? c.nivel.toLowerCase() : '';
+        // Sinónimos y variantes
+        if (val.includes('alto') || val.includes('alta')) {
+          return nivel.includes('alto') || nivel.includes('alta');
+        }
+        if (val.includes('medio') || val.includes('media')) {
+          return nivel.includes('medio') || nivel.includes('media');
+        }
+        if (val.includes('bajo') || val.includes('baja')) {
+          return nivel.includes('bajo') || nivel.includes('baja');
+        }
+        // Búsqueda genérica si no es ninguno de los anteriores
+        return nivel.includes(val);
+      });
     } else if (filtro.tipo === 'color') {
-      // Mostrar una cerradura al azar de ese color
       const arr = CERRADURAS.filter(c => c.color === filtro.valor);
       if (arr.length > 0) res = [arr[Math.floor(Math.random() * arr.length)]];
     }
@@ -371,9 +410,9 @@ const Layout = ({ children, titulo }) => {
             </div>
             <h3 className="Filtros-subtitle"> Tipo de tecnología</h3>
             <hr />
-            {['Cerraduras Manuales','Cerraduras Inteligentes','Cerraduras Automáticas'].map(tipo => (
-              <label key={tipo}><input type="checkbox" checked={filtro.tipo==='tecnologia'&&filtro.valor===tipo} onChange={()=>handleFiltroChange('tecnologia',tipo)} /> {tipo}</label>
-            ))}
+              {['Cerraduras Manuales','Cerraduras Inteligentes','Cerraduras Automáticas'].map(tipo => (
+                <label key={tipo}><input type="checkbox" checked={filtro.tipo==='categoria'&&filtro.valor===tipo} onChange={()=>handleFiltroChange('categoria',tipo)} /> {tipo}</label>
+              ))}
           </div>
           <div className="Filtros-group">
             <h3 className="Filtros-subtitle"> Precio</h3>
@@ -404,38 +443,42 @@ const Layout = ({ children, titulo }) => {
             ))}
           </div>
         </section>
-        {/* Imágenes del catálogo filtradas */}
-        <div className="Catalogo-lista">
-          {resultados.length === 0 && <div style={{textAlign:'center',width:'100%'}}>No se encontraron productos.</div>}
-          {resultados.map((c, i) => (
-            <div className="Catalogo-card" key={c.key}>
-              {c.badge && <span className={`Catalogo-badge Catalogo-badge-${c.badge==='RECOMENDADO'?'recomendado':'masvendido'}`}>{c.badge}</span>}
-              {Array.isArray(c.img) ? (
-                <div className="Catalogo-img-multi">
-                  {c.img.map((media, idx) => (
-                    media.endsWith('.mp4') ? (
-                      <video key={idx} className="Catalogo-img Catalogo-img-small" controls poster={c.img[0]} onClick={e => e.target.requestFullscreen()}>
-                        <source src={media} type="video/mp4" />
-                        Tu navegador no soporta el video.
-                      </video>
-                    ) : (
-                      <img key={idx} src={media} alt={c.nombre + '-' + (idx+1)} className="Catalogo-img Catalogo-img-small" onClick={e => e.target.requestFullscreen()} />
-                    )
-                  ))}
+        {/* Solo mostrar catálogo en Home, en el resto mostrar el contenido de la página */}
+        {useLocation().pathname === '/' ? (
+          <div className="Catalogo-lista">
+            {resultados.length === 0 && <div style={{textAlign:'center',width:'100%'}}>No se encontraron productos.</div>}
+            {resultados.map((c, i) => (
+              <div className="Catalogo-card" key={c.key}>
+                {c.badge && <span className={`Catalogo-badge Catalogo-badge-${c.badge==='RECOMENDADO'?'recomendado':'masvendido'}`}>{c.badge}</span>}
+                {Array.isArray(c.img) ? (
+                  <div className="Catalogo-img-multi">
+                    {c.img.map((media, idx) => (
+                      media.endsWith('.mp4') ? (
+                        <video key={idx} className="Catalogo-img Catalogo-img-small" controls poster={c.img[0]} onClick={e => e.target.requestFullscreen()}>
+                          <source src={media} type="video/mp4" />
+                          Tu navegador no soporta el video.
+                        </video>
+                      ) : (
+                        <img key={idx} src={media} alt={c.nombre + '-' + (idx+1)} className="Catalogo-img Catalogo-img-small" onClick={e => e.target.requestFullscreen()} />
+                      )
+                    ))}
+                  </div>
+                ) : (
+                  <img src={c.img} alt={c.nombre} className="Catalogo-img Catalogo-img-small" />
+                )}
+                <h2 className="Catalogo-titulo">{c.nombre}</h2>
+                <p className="Catalogo-desc">{c.desc}</p>
+                <div className="Catalogo-precios">
+                  <span className="Catalogo-precio-tachado">${c.precioTachado.toLocaleString()}</span>
+                  <span className="Catalogo-precio">${c.precio.toLocaleString()} COP</span>
+                  {c.descuento && <span className="Catalogo-descuento">{c.descuento}</span>}
                 </div>
-              ) : (
-                <img src={c.img} alt={c.nombre} className="Catalogo-img Catalogo-img-small" />
-              )}
-              <h2 className="Catalogo-titulo">{c.nombre}</h2>
-              <p className="Catalogo-desc">{c.desc}</p>
-              <div className="Catalogo-precios">
-                <span className="Catalogo-precio-tachado">${c.precioTachado.toLocaleString()}</span>
-                <span className="Catalogo-precio">${c.precio.toLocaleString()} COP</span>
-                {c.descuento && <span className="Catalogo-descuento">{c.descuento}</span>}
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <>{children}</>
+        )}
       </main>
       <footer className="Catalogo-footer">
         <div className="Footer-columns">
