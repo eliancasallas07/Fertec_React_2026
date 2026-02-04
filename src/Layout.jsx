@@ -2,7 +2,13 @@ import React, { useState, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import logo from './img/logo.png';
+import facebookIcon from './img/facebook.png';
+import gmailIcon from './img/gmail.png';
+import instagramIcon from './img/instagram.png';
+import nequiIcon from './img/nequi.png';
+import mastercardIcon from './img/mastercard.png';
 import lupaIcon from './img/lupa.png';
+import burbujaAudio from './audio/burbuja-sonido.mp3';
 import cerraduraBluetooth from './img/cerradura_bluetooth.png';
 import cerraduraDigital from './img/cerradura_digital.png';
 import cerraduraHuella from './img/cerradura_huella.png';
@@ -113,6 +119,7 @@ const CERRADURAS = [
 // Componente de burbuja de chatbot sencillo
 function ChatBotBubble() {
   const [open, setOpen] = useState(false);
+  const audioRef = React.useRef(null);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
     { from: "bot", text: "¡Hola! Soy el asistente Fertec. ¿Sobre qué filtro deseas consultar?\n1. Marca\n2. Categorías\n3. Precio\n4. Acceso\n5. Color" }
@@ -150,8 +157,18 @@ function ChatBotBubble() {
     setStep(nextStep);
   };
 
+  // Función para abrir el chat y reproducir el sonido
+  const handleOpen = () => {
+    setOpen(true);
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+  };
+
   return (
     <div className={open ? "ChatBotBubble open" : "ChatBotBubble"}>
+      <audio ref={audioRef} src={burbujaAudio} preload="auto" />
       {open ? (
         <div className="ChatBotBubble-window">
           <div className="ChatBotBubble-header">
@@ -176,7 +193,7 @@ function ChatBotBubble() {
           </div>
         </div>
       ) : (
-        <button className="ChatBotBubble-btn" onClick={() => setOpen(true)} title="Chatea con nosotros">
+        <button className="ChatBotBubble-btn" onClick={handleOpen} title="Chatea con nosotros">
           <img src={require('./img/chat-bot.png')} alt="ChatBot" className="ChatBotBubble-img" />
         </button>
       )}
@@ -408,7 +425,7 @@ const Layout = ({ children, titulo }) => {
           <div className="Footer-col">
             <img src={logo} alt="Logo" className="Footer-logo" />
             <p>Fertec Solutions<br/>NIT: xxxxxxxx</p>
-            <p>749 0944<br/>Celular: +57 310 853 0408<br/>Whatsapp: +57 310 853 0408</p>
+            <p>Celular: <a href="https://wa.me/573108530408" target="_blank" rel="noopener noreferrer">+57 310 853 0408 (WhatsApp)</a></p>
             <p>E-mail: ventas@Fertec.com administrativo@Fertec.com</p>
             <div className="Footer-social">
               <span> {/*  íconos sociales  */} </span>
@@ -419,18 +436,25 @@ const Layout = ({ children, titulo }) => {
             <ul>
               <li>Nuestra empresa</li>
               <li>Catálogos</li>
-              <li>Contáctanos</li>
+              <li><a href="/contactenos">Contáctanos</a></li>
             </ul>
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '10px' }}>
+              <img src={facebookIcon} alt="Facebook" style={{ width: 32, height: 32 }} />
+              <img src={gmailIcon} alt="Gmail" style={{ width: 32, height: 32 }} />
+              <img src={instagramIcon} alt="Instagram" style={{ width: 32, height: 32 }} />
+            </div>
           </div>
           <div className="Footer-col">
             <h3>Políticas</h3>
             <ul>
               <li>Términos y condiciones generales</li>
               <li>Métodos y condiciones de pago</li>
-              <li>Política de envío, cambios y devoluciones</li>
               <li>Política de protección de datos</li>
-              <li>PQRS</li>
             </ul>
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '10px' }}>
+              <img src={nequiIcon} alt="Nequi" style={{ width: 40, height: 28 }} />
+              <img src={mastercardIcon} alt="Mastercard" style={{ width: 40, height: 28 }} />
+            </div>
           </div>
           <div className="Footer-col">
             <h3>Directorios</h3>

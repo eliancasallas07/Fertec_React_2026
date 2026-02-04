@@ -1,3 +1,8 @@
+/* Enlaces blancos en el footer */
+.Catalogo-footer a, .Footer-col a {
+  color: #fff !important;
+  text-decoration: underline;
+}
 .Catalogo-badge {
   display: inline-block;
   padding: 2px 10px;
