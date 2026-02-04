@@ -238,25 +238,33 @@ const Layout = ({ children, titulo }) => {
         <h1>Catálogo de Cerraduras</h1>
       </header>
       <nav className="Nav-bar">
-        <div className="Nav-menu-icon" onClick={() => setSidebarOpen(true)}>
-          <span className="Nav-bar-icon"></span>
-          <span className="Nav-bar-icon"></span>
-          <span className="Nav-bar-icon"></span>
+        <div className="Nav-bar-item">
+          <div className="Nav-menu-icon" onClick={() => setSidebarOpen(true)}>
+            <span className="Nav-bar-icon"></span>
+            <span className="Nav-bar-icon"></span>
+            <span className="Nav-bar-icon"></span>
+          </div>
         </div>
-        <div className="Nav-logo-text">FERTEC</div>
-        <a
-          href="https://wa.me/573108530408"
-          className="Nav-contact-btn Nav-contact-btn-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Contáctanos
-        </a>
-        <div className="Nav-search">
-          <input type="text" placeholder="Buscar..." />
-          <span className="Nav-search-icon">
-            <img src={lupaIcon} alt="Buscar" className="Nav-search-img" />
-          </span>
+        <div className="Nav-bar-item">
+          <div className="Nav-logo-text">FERTEC</div>
+        </div>
+        <div className="Nav-bar-item">
+          <a
+            href="https://wa.me/573108530408"
+            className="Nav-contact-btn Nav-contact-btn-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Contáctanos
+          </a>
+        </div>
+        <div className="Nav-bar-item Nav-bar-item-search">
+          <div className="Nav-search">
+            <input type="text" placeholder="Buscar..." />
+            <span className="Nav-search-icon">
+              <img src={lupaIcon} alt="Buscar" className="Nav-search-img" />
+            </span>
+          </div>
         </div>
       </nav>
       <main className="Catalogo-main">
