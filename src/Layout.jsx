@@ -10,6 +10,7 @@ import mastercardIcon from './img/mastercard.png';
 import logoTransparente from './img/Logo-Transparente.png';
 import lupaIcon from './img/lupa.png';
 import burbujaAudio from './audio/burbuja-sonido.mp3';
+import navBurbujaAudio from './audio/nav-burbuja.mp3';
 import cerraduraBluetooth from './img/cerradura_bluetooth.png';
 import cerraduraDigital from './img/cerradura_digital.png';
 import cerraduraHuella from './img/cerradura_huella.png';
@@ -258,6 +259,7 @@ function ChatBotBubble() {
 
 const Layout = ({ children, titulo }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const navAudioRef = React.useRef(null);
 
   // Estado para filtros
   const [filtro, setFiltro] = useState({ tipo: '', valor: '' });
@@ -360,6 +362,7 @@ const Layout = ({ children, titulo }) => {
 
   return (
     <div className="App">
+      <audio ref={navAudioRef} src={navBurbujaAudio} preload="auto" />
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <header className="App-header">
         <div>
@@ -368,7 +371,13 @@ const Layout = ({ children, titulo }) => {
         <h1>Catálogo de Cerraduras</h1>
       </header>
       <nav className="Nav-bar">
-        <div className="Nav-menu-icon" onClick={() => setSidebarOpen(true)}>
+        <div className="Nav-menu-icon" onClick={() => {
+          setSidebarOpen(true);
+          if (navAudioRef.current) {
+            navAudioRef.current.currentTime = 0;
+            navAudioRef.current.play();
+          }
+        }}>
           <span className="Nav-bar-icon"></span>
           <span className="Nav-bar-icon"></span>
           <span className="Nav-bar-icon"></span>
