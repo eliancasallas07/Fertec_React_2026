@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import logo from './img/logo.png';
 import facebookIcon from './img/facebook.png';
@@ -7,15 +7,8 @@ import gmailIcon from './img/gmail.png';
 import instagramIcon from './img/instagram.png';
 import nequiIcon from './img/nequi.png';
 import mastercardIcon from './img/mastercard.png';
-import logoTransparente from './img/Logo-Transparente.png';
-import lupaIcon from './img/lupa.png';
 import burbujaAudio from './audio/burbuja-sonido.mp3';
 import navBurbujaAudio from './audio/nav-burbuja.mp3';
-import cerraduraBluetooth from './img/cerradura_bluetooth.png';
-import cerraduraDigital from './img/cerradura_digital.png';
-import cerraduraHuella from './img/cerradura_huella.png';
-import cerraduraInteligente from './img/cerradura_inteligente.png';
-import cerraduraTarjeta from './img/cerradura_tarjeta.png';
 // Datos de cerraduras
 const CERRADURAS = [
               {
@@ -28,7 +21,7 @@ const CERRADURAS = [
                 acceso: 'Reconocimiento facial, Automática',
                 color: 'Negro Brillante',
                 nivel: 'Premium',
-                img: [require('./videos/a89.mp4'), require('./videos/a89-2.mp4'), require('./videos/a89-3.mp4')],
+                img: [require('./img/a89.jpeg'), require('./img/a89-2.jpeg'), require('./img/a89-3.jpeg')],
                 desc: 'Automática\nIdeal para puertas de seguridad\nPuede ser instalada también en puertas de madera y metal\nReconocimiento facial\nColor: Negro Brillante\nCámara y pantalla\nVideo portero\nTimbre incorporado\nAlimentación: Batería de litio recargable\nPasador nocturno',
                 descuento: '-17%'
               },
@@ -42,7 +35,7 @@ const CERRADURAS = [
               acceso: 'Huella, Clave, Tarjeta, Llave, Remoto',
               color: 'Negro',
               nivel: 'Intermedia',
-              img: [require('./img/j23.jpeg'), require('./img/j23-2.jpeg')],
+              img: [require('./videos/j23.mp4'), require('./videos/j23-2.mp4'), require('./videos/j23-3.mp4')],
               desc: 'Cerradura Automática\nIdeal para portones a la intemperie, puertas de garaje\nCertificación IP67\nMétodos de apertura:\nHuella\nClave\nTarjeta\nLlave de seguridad\nRemotamente desde el celular.',
               descuento: '-19%'
             },
@@ -56,7 +49,7 @@ const CERRADURAS = [
             acceso: 'Huella, Clave, Llave, Bluetooth',
             color: 'Negro',
             nivel: 'Básica',
-            img: [require('./img/t8.jpeg'), require('./img/t8-2.jpeg'), require('./videos/t8-3.mp4')],
+            img: [require('./img/t8.jpeg'), require('./img/t8-2.jpeg')],
             desc: 'Ideal para alcobas, oficinas y negocios.\nMétodos de apertura:\nHuella\nClave\nLlave de seguridad\nApertura remota por Bluetooth.',
             descuento: '-20%'
           },
@@ -84,7 +77,7 @@ const CERRADURAS = [
         acceso: 'Manual',
         color: 'Negro',
         nivel: 'Básica',
-        img: [require('./img/k9.jpeg'), require('./img/k9-2.jpeg'), require('./img/k9-3.jpeg')],
+        img: [require('./img/k9.jpeg'), require('./img/k9-2.jpeg'), require('./videos/k9-3.mp4')],
         desc: 'Color: Negro.\nPuede ser instalada en puertas de madera y metal.\nIdeal para casas residenciales y apartamentos.',
         descuento: '-18%'
       },
@@ -98,7 +91,7 @@ const CERRADURAS = [
       acceso: 'Manual',
       color: 'Negro',
       nivel: 'Intermedia',
-      img: [require('./img/k7.jpeg'), require('./img/k7-2.jpeg'), require('./videos/k7-3.mp4')],
+      img: [require('./img/k7-plus.jpeg'), require('./img/k7-plus-2.jpeg'), require('./img/k7-plus-3.jpeg')],
       desc: 'Color: Negro.\nPuede ser instalada en puertas de madera y metal.\nIncluye Cámara y pantalla.\nCuenta con batería de litio recargable.',
       descuento: '-18%'
     },
@@ -142,9 +135,6 @@ function ChatBotBubble() {
   };
   const getNiveles = (categoria, marca, acceso) => {
     return Array.from(new Set(CERRADURAS.filter(c => c.categoria === categoria && c.marca === marca && c.acceso === acceso).map(c => c.nivel)));
-  };
-  const getPrecios = (categoria, marca, acceso, nivel) => {
-    return Array.from(new Set(CERRADURAS.filter(c => c.categoria === categoria && c.marca === marca && c.acceso === acceso && c.nivel === nivel).map(c => c.precio)));
   };
 
   const handleSend = () => {
@@ -260,6 +250,7 @@ function ChatBotBubble() {
 const Layout = ({ children, titulo }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navAudioRef = React.useRef(null);
+  const location = useLocation();
 
   // Estado para filtros
   const [filtro, setFiltro] = useState({ tipo: '', valor: '' });
@@ -447,8 +438,8 @@ const Layout = ({ children, titulo }) => {
             ))}
           </div>
         </section>
-        {/* Solo mostrar catálogo en Home, en el resto mostrar el contenido de la página */}
-        {useLocation().pathname === '/' ? (
+        {/* Mostrar catálogo filtrado en Home y en /cerradurascodigo */}
+        {(location.pathname === '/' || location.pathname === '/cerradurascodigo') ? (
           <div className="Catalogo-lista">
             {resultados.length === 0 && <div style={{textAlign:'center',width:'100%'}}>No se encontraron productos.</div>}
             {resultados.map((c, i) => (

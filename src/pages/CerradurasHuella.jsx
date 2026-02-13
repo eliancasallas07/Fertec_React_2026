@@ -2,9 +2,12 @@
 import Layout from '../Layout';
 import t8Img from '../img/t8.jpeg';
 import t8Img2 from '../img/t8-2.jpeg';
-import j23Img from '../img/j23.jpeg';
-import j23Img2 from '../img/j23-2.jpeg';
-import a89Video from '../videos/a89.mp4';
+import j23Video from '../videos/j23.mp4';
+import j23Video2 from '../videos/j23-2.mp4';
+import j23Video3 from '../videos/j23-3.mp4';
+import a89Img from '../img/a89.jpeg';
+import a89Img2 from '../img/a89-2.jpeg';
+import a89Img3 from '../img/a89-3.jpeg';
 
 const CERRADURAS = [
   {
@@ -25,7 +28,7 @@ const CERRADURAS = [
   {
     key: 'j23',
     nombre: 'Cerradura J23',
-    imgs: [j23Img, j23Img2],
+    imgs: [j23Video, j23Video2, j23Video3],
     desc: (
       <>
         <strong>Color:</strong> Negro.<br />
@@ -40,7 +43,7 @@ const CERRADURAS = [
   {
     key: 'a89',
     nombre: 'Cerradura A89',
-    imgs: [a89Video],
+    imgs: [a89Img, a89Img2, a89Img3],
     desc: (
       <>
         <strong>Color:</strong> Negro.<br />

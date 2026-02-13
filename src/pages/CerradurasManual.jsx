@@ -2,15 +2,13 @@
 import Layout from '../Layout';
 import k7Img from '../img/k7.jpeg';
 import k7Img2 from '../img/k7-2.jpeg';
-import k9Img from '../img/k9.jpeg';
-import k9Img2 from '../img/k9-2.jpeg';
-import k9Img3 from '../img/k9-3.jpeg';
+
 
 const CERRADURAS = [
   {
     key: 'k9',
     nombre: 'Cerradura K9',
-    imgs: [k9Img, k9Img2, k9Img3],
+    imgs: [require('../img/k9.jpeg'), require('../img/k9-2.jpeg'), require('../videos/k9-3.mp4')],
     desc: (
       <>
         <strong>Color:</strong> Negro.<br />
