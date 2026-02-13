@@ -271,9 +271,13 @@ const Layout = ({ children, titulo }) => {
       const arr = CERRADURAS.filter(c => c.marca === filtro.valor);
       if (arr.length > 0) res = [arr[Math.floor(Math.random() * arr.length)]];
     } else if (filtro.tipo === 'categoria') {
-      res = CERRADURAS.filter(c => c.categoria === filtro.valor);
+      if (filtro.valor === 'Cerraduras Inteligentes') {
+        res = CERRADURAS;
+      } else {
+        res = CERRADURAS.filter(c => c.categoria === filtro.valor);
+      }
     } else if (filtro.tipo === 'precio') {
-      if (filtro.valor === '$150.000 — $300.000') res = CERRADURAS.filter(c => c.precio >= 150000 && c.precio <= 300000);
+      if (filtro.valor === '$280.000 — $300.000') res = CERRADURAS.filter(c => c.precio >= 280000 && c.precio <= 300000);
       else if (filtro.valor === '$300.001 — $600.000') res = CERRADURAS.filter(c => c.precio > 300000 && c.precio <= 600000);
       else if (filtro.valor === '$600.001 — $1.000.000') res = CERRADURAS.filter(c => c.precio > 600000 && c.precio <= 1000000);
       else if (filtro.valor === '$1.000.001 — $2.000.000') res = CERRADURAS.filter(c => c.precio > 1000000 && c.precio <= 2000000);
@@ -281,31 +285,28 @@ const Layout = ({ children, titulo }) => {
     } else if (filtro.tipo === 'apertura') {
       // Buscar coincidencia flexible en acceso y descripción
       const val = filtro.valor.toLowerCase();
-      res = CERRADURAS.filter(c => {
-        const acceso = c.acceso ? c.acceso.toLowerCase() : '';
-        const desc = c.desc ? c.desc.toLowerCase() : '';
-        // Permitir variantes como 'huella', 'huella digital', etc.
-        if (val.includes('huella')) {
-          return acceso.includes('huella') || desc.includes('huella');
-        }
-        if (val.includes('código') || val.includes('clave')) {
-          return acceso.includes('código') || acceso.includes('clave') || desc.includes('código') || desc.includes('clave');
-        }
-        if (val.includes('tarjeta')) {
-          return acceso.includes('tarjeta') || desc.includes('tarjeta');
-        }
-        if (val.includes('bluetooth')) {
-          return acceso.includes('bluetooth') || desc.includes('bluetooth');
-        }
-        if (val.includes('llave')) {
-          return acceso.includes('llave') || desc.includes('llave');
-        }
-        if (val.includes('facial')) {
-          return acceso.includes('facial') || desc.includes('facial');
-        }
-        // Búsqueda genérica si no es ninguno de los anteriores
-        return acceso.includes(val) || desc.includes(val);
-      });
+      if (val.includes('huella') || val.includes('código') || val.includes('clave')) {
+        res = CERRADURAS;
+      } else {
+        res = CERRADURAS.filter(c => {
+          const acceso = c.acceso ? c.acceso.toLowerCase() : '';
+          const desc = c.desc ? c.desc.toLowerCase() : '';
+          if (val.includes('tarjeta')) {
+            return acceso.includes('tarjeta') || desc.includes('tarjeta');
+          }
+          if (val.includes('bluetooth')) {
+            return acceso.includes('bluetooth') || desc.includes('bluetooth');
+          }
+          if (val.includes('llave')) {
+            return acceso.includes('llave') || desc.includes('llave');
+          }
+          if (val.includes('facial')) {
+            return acceso.includes('facial') || desc.includes('facial');
+          }
+          // Búsqueda genérica si no es ninguno de los anteriores
+          return acceso.includes(val) || desc.includes(val);
+        });
+      }
     } else if (filtro.tipo === 'uso') {
       // Buscar coincidencia flexible en la descripción para uso recomendado
       const val = filtro.valor.toLowerCase();
@@ -412,7 +413,7 @@ const Layout = ({ children, titulo }) => {
           <div className="Filtros-group">
             <h3 className="Filtros-subtitle"> Precio</h3>
             <hr />
-            {['$150.000 — $300.000','$300.001 — $600.000','$600.001 — $1.000.000','$1.000.001 — $2.000.000','Más de $2.000.000'].map(p => (
+            {['$280.000 — $300.000','$300.000 — $600.000','$600.000 — $1.000.000','$1.000.000 — $2.000.000','Más de $2.000.000'].map(p => (
               <label key={p}><input type="checkbox" checked={filtro.tipo==='precio'&&filtro.valor===p} onChange={()=>handleFiltroChange('precio',p)} /> {p}</label>
             ))}
           </div>
