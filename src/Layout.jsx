@@ -489,7 +489,7 @@ const Layout = ({ children, titulo, mostrarFiltro = true }) => {
             <img src={logo} alt="Logo" className="Footer-logo" />
             <p>Fertec Solutions<br/>NIT: xxxxxxxx</p>
             <p>Celular: <a href="https://wa.me/573108530408" target="_blank" rel="noopener noreferrer">+57 310 853 0408 (WhatsApp)</a></p>
-            <p>E-mail: ventas@Fertec.com administrativo@Fertec.com</p>
+            <p>E-mail: <a href="mailto:fertecsolutions.shop@gmail.com">fertecsolutions.shop@gmail.com</a></p>
             <div className="Footer-social">
               <span> {/*  íconos sociales  */} </span>
             </div>
@@ -497,8 +497,7 @@ const Layout = ({ children, titulo, mostrarFiltro = true }) => {
           <div className="Footer-col">
             <h3>Acerca de nosotros</h3>
             <ul>
-              <li>Nuestra empresa</li>
-              <li>Catálogos</li>
+              <li><a href="/docs/FERTEC SOLUTIONS_Conceptualización.pdf" download> Nuestra empresa </a></li>
               <li><a href="/contactenos">Contáctanos</a></li>
             </ul>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '10px' }}>
