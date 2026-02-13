@@ -7,6 +7,7 @@ import gmailIcon from './img/gmail.png';
 import instagramIcon from './img/instagram.png';
 import nequiIcon from './img/nequi.png';
 import mastercardIcon from './img/mastercard.png';
+import daviplataIcon from './img/daviplata.png';
 import burbujaAudio from './audio/burbuja-sonido.mp3';
 import navBurbujaAudio from './audio/nav-burbuja.mp3';
 // Datos de cerraduras
@@ -247,7 +248,7 @@ function ChatBotBubble() {
   );
 }
 
-const Layout = ({ children, titulo }) => {
+const Layout = ({ children, titulo, mostrarFiltro = true }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navAudioRef = React.useRef(null);
   const location = useLocation();
@@ -392,53 +393,55 @@ const Layout = ({ children, titulo }) => {
             <h2 className="Catalogo-titulo-main">{titulo}</h2>
           )}
         </section>
-        {/* Filtros dinámicos */}
-        <section className="Filtros-section">
-          <button className="Filtros-buscar-btn" onClick={buscar}>Buscar</button>
-          <h2 className="Filtros-title">Filtrar por</h2>
-          <div className="Filtros-group">
+        {/* Filtros dinámicos solo si mostrarFiltro es true */}
+        {mostrarFiltro && (
+          <section className="Filtros-section">
+            <button className="Filtros-buscar-btn" onClick={buscar}>Buscar</button>
+            <h2 className="Filtros-title">Filtrar por</h2>
             <div className="Filtros-group">
-              <h3 className="Filtros-subtitle">Marca</h3>
+              <div className="Filtros-group">
+                <h3 className="Filtros-subtitle">Marca</h3>
+                <hr />
+                {['k7','k7plus','k9','k86','T8','j23','a89'].map(m => (
+                  <label key={m}><input type="checkbox" checked={filtro.tipo==='marca'&&filtro.valor===m} onChange={()=>handleFiltroChange('marca',m)} /> {m}</label>
+                ))}
+              </div>
+              <h3 className="Filtros-subtitle"> Tipo de tecnología</h3>
               <hr />
-              {['k7','k7plus','k9','k86','T8','j23','a89'].map(m => (
-                <label key={m}><input type="checkbox" checked={filtro.tipo==='marca'&&filtro.valor===m} onChange={()=>handleFiltroChange('marca',m)} /> {m}</label>
+                {['Cerraduras Manuales','Cerraduras Inteligentes','Cerraduras Automáticas'].map(tipo => (
+                  <label key={tipo}><input type="checkbox" checked={filtro.tipo==='categoria'&&filtro.valor===tipo} onChange={()=>handleFiltroChange('categoria',tipo)} /> {tipo}</label>
+                ))}
+            </div>
+            <div className="Filtros-group">
+              <h3 className="Filtros-subtitle"> Precio</h3>
+              <hr />
+              {['$280.000 — $300.000','$300.000 — $600.000','$600.000 — $1.000.000','$1.000.000 — $2.000.000','Más de $2.000.000'].map(p => (
+                <label key={p}><input type="checkbox" checked={filtro.tipo==='precio'&&filtro.valor===p} onChange={()=>handleFiltroChange('precio',p)} /> {p}</label>
               ))}
             </div>
-            <h3 className="Filtros-subtitle"> Tipo de tecnología</h3>
-            <hr />
-              {['Cerraduras Manuales','Cerraduras Inteligentes','Cerraduras Automáticas'].map(tipo => (
-                <label key={tipo}><input type="checkbox" checked={filtro.tipo==='categoria'&&filtro.valor===tipo} onChange={()=>handleFiltroChange('categoria',tipo)} /> {tipo}</label>
+            <div className="Filtros-group">
+              <h3 className="Filtros-subtitle"> Método de apertura</h3>
+              <hr />
+              {['Huella digital','Código / Clave','Tarjeta','Bluetooth / App','Llave mecánica','Reconocimiento facial'].map(metodo => (
+                <label key={metodo}><input type="checkbox" checked={filtro.tipo==='apertura'&&filtro.valor===metodo} onChange={()=>handleFiltroChange('apertura',metodo)} /> {metodo}</label>
               ))}
-          </div>
-          <div className="Filtros-group">
-            <h3 className="Filtros-subtitle"> Precio</h3>
-            <hr />
-            {['$280.000 — $300.000','$300.000 — $600.000','$600.000 — $1.000.000','$1.000.000 — $2.000.000','Más de $2.000.000'].map(p => (
-              <label key={p}><input type="checkbox" checked={filtro.tipo==='precio'&&filtro.valor===p} onChange={()=>handleFiltroChange('precio',p)} /> {p}</label>
-            ))}
-          </div>
-          <div className="Filtros-group">
-            <h3 className="Filtros-subtitle"> Método de apertura</h3>
-            <hr />
-            {['Huella digital','Código / Clave','Tarjeta','Bluetooth / App','Llave mecánica','Reconocimiento facial'].map(metodo => (
-              <label key={metodo}><input type="checkbox" checked={filtro.tipo==='apertura'&&filtro.valor===metodo} onChange={()=>handleFiltroChange('apertura',metodo)} /> {metodo}</label>
-            ))}
-          </div>
-          <div className="Filtros-group">
-            <h3 className="Filtros-subtitle"> Uso recomendado</h3>
-            <hr />
-            {['Hogar / Apartamento','Oficinas y negocios','Portones y garajes','Puertas de seguridad'].map(uso => (
-              <label key={uso}><input type="checkbox" checked={filtro.tipo==='uso'&&filtro.valor===uso} onChange={()=>handleFiltroChange('uso',uso)} /> {uso}</label>
-            ))}
-          </div>
-          <div className="Filtros-group">
-            <h3 className="Filtros-subtitle"> Nivel</h3>
-            <hr />
-            {['Básica','Intermedia','Premium'].map(nivel => (
-              <label key={nivel}><input type="checkbox" checked={filtro.tipo==='nivel'&&filtro.valor===nivel} onChange={()=>handleFiltroChange('nivel',nivel)} /> {nivel}</label>
-            ))}
-          </div>
-        </section>
+            </div>
+            <div className="Filtros-group">
+              <h3 className="Filtros-subtitle"> Uso recomendado</h3>
+              <hr />
+              {['Hogar / Apartamento','Oficinas y negocios','Portones y garajes','Puertas de seguridad'].map(uso => (
+                <label key={uso}><input type="checkbox" checked={filtro.tipo==='uso'&&filtro.valor===uso} onChange={()=>handleFiltroChange('uso',uso)} /> {uso}</label>
+              ))}
+            </div>
+            <div className="Filtros-group">
+              <h3 className="Filtros-subtitle"> Nivel</h3>
+              <hr />
+              {['Básica','Intermedia','Premium'].map(nivel => (
+                <label key={nivel}><input type="checkbox" checked={filtro.tipo==='nivel'&&filtro.valor===nivel} onChange={()=>handleFiltroChange('nivel',nivel)} /> {nivel}</label>
+              ))}
+            </div>
+          </section>
+        )}
         {/* Mostrar catálogo filtrado en Home y en /cerradurascodigo */}
         {(location.pathname === '/' || location.pathname === '/cerradurascodigo') ? (
           <div className="Catalogo-lista">
@@ -507,19 +510,20 @@ const Layout = ({ children, titulo }) => {
           <div className="Footer-col">
             <h3>Políticas</h3>
             <ul>
-              <li>Términos y condiciones generales</li>
-              <li>Métodos y condiciones de pago</li>
-              <li>Política de protección de datos</li>
+              <li><a href="https://www.sic.gov.co/terminos-y-condiciones" target="_blank" rel="noopener noreferrer">Términos y condiciones generales</a></li>
+              <li><a href="https://www.bancolombia.com/personas/ayuda/metodos-pago" target="_blank" rel="noopener noreferrer">Métodos y condiciones de pago</a></li>
+              <li><a href="https://www.sic.gov.co/politica-de-proteccion-de-datos-personales" target="_blank" rel="noopener noreferrer">Política de protección de datos</a></li>
             </ul>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '10px' }}>
               <img src={nequiIcon} alt="Nequi" style={{ width: 40, height: 28 }} />
               <img src={mastercardIcon} alt="Mastercard" style={{ width: 40, height: 28 }} />
+              <img src={daviplataIcon} alt="Daviplata" style={{ width: 40, height: 28 }} />
             </div>
           </div>
           <div className="Footer-col">
-            <h3>Directorios</h3>
+            <h3>Soporte</h3>
             <ul>
-              <li>Instaladores</li>
+                <li><a href="https://wa.me/573108530408" target="_blank" rel="noopener noreferrer">Soporte vía WhatsApp</a></li>
             </ul>
           </div>
         </div>

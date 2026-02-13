@@ -2,10 +2,10 @@
 import Layout, { CERRADURAS } from '../Layout';
 
 const CerradurasHuella = () => {
-  // Filtrar solo las cerraduras con huella
-  const cerraduras = CERRADURAS.filter(c => c.acceso && c.acceso.toLowerCase().includes('huella'));
+  // Mostrar todas las cerraduras del catálogo
+  const cerraduras = CERRADURAS;
   return (
-    <Layout titulo="Cerraduras con Huella">
+    <Layout titulo="Cerraduras con Huella" mostrarFiltro={false}>
       <div className="Catalogo-lista">
         {cerraduras.map(c => (
           <div key={c.key} className="Catalogo-card">
@@ -32,7 +32,7 @@ const CerradurasHuella = () => {
               ))}
             </div>
             <div className="Catalogo-precios">
-              <span className="Catalogo-precio-tachado" style={{marginRight:'8px',color:'#b0b0b0',textDecoration:'line-through'}}>${c.precioTachado.toLocaleString()}</span>
+              <span className="Catalogo-precio-tachado" style={{marginRight:'8px'}}>${c.precioTachado.toLocaleString()}</span>
               <span className="Catalogo-precio" style={{marginRight:'8px',color:'#0077cc',fontWeight:'bold'}}>${c.precio.toLocaleString()} COP</span>
               <span className="Catalogo-descuento">{c.descuento}</span>
             </div>

@@ -1,11 +1,15 @@
 import Layout from '../Layout';
 
 const Contactenos = () => (
-  <Layout titulo="Contáctenos">
+  <Layout titulo="Contáctenos" mostrarFiltro={false}>
     <div className="PageCentered">
       <h2>Contáctenos</h2>
-      <p>Selecciona una categoría en el menú lateral para comenzar.</p>
+      {/* Texto eliminado por solicitud */}
+      <p style={{marginTop:'20px'}}>
+        Celular: <a href="https://wa.me/573108530408" target="_blank" rel="noopener noreferrer">+57 310 853 0408 (WhatsApp)</a>
+      </p>
     </div>
+    {/* Filtro eliminado en esta interfaz */}
   </Layout>
 );
 

@@ -49,7 +49,7 @@ const CERRADURAS = [
 ];
 
 const CerradurasDigitales = () => (
-  <Layout titulo="Cerraduras Digitales">
+  <Layout titulo="Cerraduras Digitales" mostrarFiltro={false}>
     <div className="Catalogo-lista">
       {CERRADURAS.map(c => (
         <div key={c.key} className="Catalogo-card">
@@ -68,7 +68,7 @@ const CerradurasDigitales = () => (
           <h2 className="Catalogo-titulo">{c.nombre}</h2>
           <div className="Catalogo-desc" style={{marginBottom:'8px'}}>{c.desc}</div>
           <div className="Catalogo-precios">
-            <span className="Catalogo-precio-tachado" style={{marginRight:'8px',color:'#b0b0b0',textDecoration:'line-through'}}>${c.precioTachado.toLocaleString()}</span>
+            <span className="Catalogo-precio-tachado" style={{marginRight:'8px'}}>${c.precioTachado.toLocaleString()}</span>
             <span className="Catalogo-precio" style={{marginRight:'8px',color:'#0077cc',fontWeight:'bold'}}>${c.precio.toLocaleString()} COP</span>
             <span className="Catalogo-descuento">{c.descuento}</span>
           </div>

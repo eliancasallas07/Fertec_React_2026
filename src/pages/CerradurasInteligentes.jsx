@@ -1,19 +1,12 @@
 
 // import eliminado, se deja solo la importación con destructuring más abajo
-import k7plusImg from '../img/k7.jpeg';
-import k86Img from '../img/k86.jpeg';
-import k86Img2 from '../img/k86-2.jpeg';
-import t8Img from '../img/t8.jpeg';
-import t8Img2 from '../img/t8-2.jpeg';
-import j23Video from '../videos/j23.mp4';
-import j23Video2 from '../videos/j23-2.mp4';
+// ...existing code...
 import Layout, { CERRADURAS } from '../Layout';
 
 const CerradurasInteligentes = () => {
-  // Filtrar solo las cerraduras inteligentes
   const cerraduras = CERRADURAS.filter(c => c.categoria === 'Cerraduras Inteligentes');
   return (
-    <Layout titulo="Cerraduras Inteligentes">
+    <Layout titulo="Cerraduras Inteligentes" mostrarFiltro={false}>
       <div className="Catalogo-lista">
         {cerraduras.map(c => (
           <div key={c.key} className="Catalogo-card">
@@ -40,13 +33,14 @@ const CerradurasInteligentes = () => {
               ))}
             </div>
             <div className="Catalogo-precios">
-              <span className="Catalogo-precio-tachado" style={{marginRight:'8px',color:'#b0b0b0',textDecoration:'line-through'}}>${c.precioTachado.toLocaleString()}</span>
+              <span className="Catalogo-precio-tachado" style={{marginRight:'8px'}}>${c.precioTachado.toLocaleString()}</span>
               <span className="Catalogo-precio" style={{marginRight:'8px',color:'#0077cc',fontWeight:'bold'}}>${c.precio.toLocaleString()} COP</span>
               <span className="Catalogo-descuento">{c.descuento}</span>
             </div>
           </div>
         ))}
       </div>
+      {/* Filtro eliminado en esta interfaz */}
     </Layout>
   );
 };

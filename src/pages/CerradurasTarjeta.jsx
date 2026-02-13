@@ -1,12 +1,49 @@
-import Layout from '../Layout';
+import Layout, { CERRADURAS } from '../Layout';
 
-const CerradurasTarjeta = () => (
-  <Layout titulo="Cerraduras Tarjeta">
-    <div className="PageCentered">
-      <h2>Cerraduras Tarjeta</h2>
-      <p>Selecciona una categoría en el menú lateral para comenzar.</p>
-    </div>
-  </Layout>
-);
+const CerradurasTarjeta = () => {
+  // Mostrar todas las cerraduras que tengan 'tarjeta' en acceso o descripción
+  const cerraduras = CERRADURAS.filter(c => {
+    const acceso = c.acceso ? c.acceso.toLowerCase() : '';
+    const desc = c.desc ? c.desc.toLowerCase() : '';
+    return acceso.includes('tarjeta') || desc.includes('tarjeta');
+  });
+  return (
+    <Layout titulo="Cerraduras Tarjeta" mostrarFiltro={false}>
+      <div className="Catalogo-lista">
+        {cerraduras.map(c => (
+          <div key={c.key} className="Catalogo-card">
+            {Array.isArray(c.img) ? (
+              <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:'10px',marginBottom:'10px'}}>
+                {c.img.map((img, idx) => (
+                  img.endsWith('.mp4') ? (
+                    <video key={idx} className="Catalogo-img Catalogo-img-small" controls poster={c.img[0]} onClick={e => e.target.requestFullscreen()}>
+                      <source src={img} type="video/mp4" />
+                      Tu navegador no soporta el video.
+                    </video>
+                  ) : (
+                    <img key={idx} src={img} alt={c.nombre + '-' + (idx+1)} className="Catalogo-img Catalogo-img-small" onClick={e => e.target.requestFullscreen()} />
+                  )
+                ))}
+              </div>
+            ) : (
+              <img src={c.img} alt={c.nombre} className="Catalogo-img Catalogo-img-small" />
+            )}
+            <h2 className="Catalogo-titulo">{c.nombre}</h2>
+            <div className="Catalogo-desc" style={{marginBottom:'8px'}}>
+              {c.desc.split('\n').map((line, idx) => (
+                <div key={idx} style={{fontWeight:'bold'}}>{line}</div>
+              ))}
+            </div>
+            <div className="Catalogo-precios">
+              <span className="Catalogo-precio-tachado" style={{marginRight:'8px'}}>${c.precioTachado.toLocaleString()}</span>
+              <span className="Catalogo-precio" style={{marginRight:'8px',color:'#0077cc',fontWeight:'bold'}}>${c.precio.toLocaleString()} COP</span>
+              <span className="Catalogo-descuento">{c.descuento}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Layout>
+  );
+};
 
 export default CerradurasTarjeta;

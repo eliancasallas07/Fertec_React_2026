@@ -2,10 +2,9 @@
 
 import Layout, { CERRADURAS } from '../Layout';
 const CerradurasCodigo = () => {
-  // Filtrar solo las cerraduras con código
-  const cerraduras = CERRADURAS.filter(c => c.acceso && (c.acceso.toLowerCase().includes('código') || c.acceso.toLowerCase().includes('clave')));
+  const cerraduras = CERRADURAS;
   return (
-    <Layout titulo="Cerraduras con Código">
+    <Layout titulo="Cerraduras con Código" mostrarFiltro={false}>
       <div className="Catalogo-lista">
         {cerraduras.map(c => (
           <div key={c.key} className="Catalogo-card">
@@ -32,13 +31,14 @@ const CerradurasCodigo = () => {
               ))}
             </div>
             <div className="Catalogo-precios">
-              <span className="Catalogo-precio-tachado" style={{marginRight:'8px',color:'#b0b0b0',textDecoration:'line-through'}}>${c.precioTachado.toLocaleString()}</span>
+              <span className="Catalogo-precio-tachado" style={{marginRight:'8px'}}>${c.precioTachado.toLocaleString()}</span>
               <span className="Catalogo-precio" style={{marginRight:'8px',color:'#0077cc',fontWeight:'bold'}}>${c.precio.toLocaleString()} COP</span>
               <span className="Catalogo-descuento">{c.descuento}</span>
             </div>
           </div>
         ))}
       </div>
+      {/* Filtro eliminado en esta interfaz */}
     </Layout>
   );
 };

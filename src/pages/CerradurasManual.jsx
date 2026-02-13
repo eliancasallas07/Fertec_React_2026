@@ -6,7 +6,7 @@ const CerradurasManual = () => {
   // Filtrar solo las cerraduras manuales
   const cerraduras = CERRADURAS.filter(c => c.categoria === 'Cerraduras Manuales');
   return (
-    <Layout titulo="Cerraduras Manuales">
+    <Layout titulo="Cerraduras Manuales" mostrarFiltro={false}>
       <div className="Catalogo-lista">
         {cerraduras.map(c => (
           <div key={c.key} className="Catalogo-card">
@@ -33,7 +33,7 @@ const CerradurasManual = () => {
               ))}
             </div>
             <div className="Catalogo-precios">
-              <span className="Catalogo-precio-tachado" style={{marginRight:'8px',color:'#b0b0b0',textDecoration:'line-through'}}>${c.precioTachado.toLocaleString()}</span>
+              <span className="Catalogo-precio-tachado" style={{marginRight:'8px'}}>${c.precioTachado.toLocaleString()}</span>
               <span className="Catalogo-precio" style={{marginRight:'8px',color:'#0077cc',fontWeight:'bold'}}>${c.precio.toLocaleString()} COP</span>
               <span className="Catalogo-descuento">{c.descuento}</span>
             </div>

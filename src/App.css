@@ -49,8 +49,8 @@
   justify-content: center;
   margin-bottom: 0.5rem;
 }
-.Catalogo-precio-tachado {
-  color: #d32f2f;
+ .Catalogo-precio-tachado {
+  color: #ff0000;
   text-decoration: line-through;
   font-size: 1rem;
   font-weight: 500;
