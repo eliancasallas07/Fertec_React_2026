@@ -70,7 +70,7 @@ const CerradurasDigitales = () => (
           <div className="Catalogo-precios">
             <span className="Catalogo-precio-tachado" style={{marginRight:'8px',color:'#b0b0b0',textDecoration:'line-through'}}>${c.precioTachado.toLocaleString()}</span>
             <span className="Catalogo-precio" style={{marginRight:'8px',color:'#0077cc',fontWeight:'bold'}}>${c.precio.toLocaleString()} COP</span>
-            <span style={{color:'#e53935',fontWeight:'bold'}}>{c.descuento}</span>
+            <span className="Catalogo-descuento">{c.descuento}</span>
           </div>
         </div>
       ))}
