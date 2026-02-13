@@ -323,6 +323,8 @@ const Layout = ({ children, titulo, mostrarFiltro = true }) => {
     setResultados(res.length > 0 ? res : []);
   };
 
+  const [showMenuBubble, setShowMenuBubble] = useState(true);
+
   return (
     <div className="App">
       <audio ref={navAudioRef} src={navBurbujaAudio} preload="auto" />
@@ -334,16 +336,44 @@ const Layout = ({ children, titulo, mostrarFiltro = true }) => {
         <h1>Catálogo de Cerraduras</h1>
       </header>
       <nav className="Nav-bar">
-        <div className="Nav-menu-icon" onClick={() => {
-          setSidebarOpen(true);
-          if (navAudioRef.current) {
-            navAudioRef.current.currentTime = 0;
-            navAudioRef.current.play();
-          }
-        }}>
-          <span className="Nav-bar-icon"></span>
-          <span className="Nav-bar-icon"></span>
-          <span className="Nav-bar-icon"></span>
+        <div style={{position:'relative', display:'flex', flexDirection:'column', alignItems:'center'}}>
+          {showMenuBubble && (
+            <div style={{
+              position: 'absolute',
+              top: '-56px',
+              left: '0',
+              transform: 'none',
+              background: '#fff',
+              color: '#222',
+              borderRadius: '16px',
+              padding: '8px 18px',
+              fontSize: '1rem',
+              boxShadow: '0 2px 12px 0 rgba(0,0,0,0.10)',
+              zIndex: 100,
+              maxWidth: '320px',
+              minWidth: '120px',
+              width: 'max-content',
+              textAlign: 'center',
+              border: '1px solid #e0e0e0',
+              fontWeight: 500,
+              overflowWrap: 'break-word',
+              pointerEvents: 'none',
+            }}>
+              Este es el botón de menú, haz click
+            </div>
+          )}
+          <div className="Nav-menu-icon" onClick={() => {
+            setSidebarOpen(true);
+            setShowMenuBubble(false);
+            if (navAudioRef.current) {
+              navAudioRef.current.currentTime = 0;
+              navAudioRef.current.play();
+            }
+          }}>
+            <span className="Nav-bar-icon"></span>
+            <span className="Nav-bar-icon"></span>
+            <span className="Nav-bar-icon"></span>
+          </div>
         </div>
         <div className="Nav-logo-text">FERTEC</div>
         <a
@@ -366,7 +396,37 @@ const Layout = ({ children, titulo, mostrarFiltro = true }) => {
         {/* Filtros dinámicos solo si mostrarFiltro es true */}
         {mostrarFiltro && (
           <section className="Filtros-section">
-            <button className="Filtros-buscar-btn" onClick={buscar}>Buscar</button>
+            <div style={{
+              position: 'relative',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              marginBottom: '8px'
+            }}>
+              <div style={{
+                position: 'absolute',
+                top: '-60px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                background: '#fff',
+                color: '#111',
+                borderRadius: '12px',
+                padding: '7px 16px',
+                fontWeight: 'bold',
+                fontSize: '0.98rem',
+                boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)',
+                zIndex: 20,
+                textAlign: 'center',
+                border: '1px solid #e0e0e0',
+                maxWidth: '320px',
+                minWidth: '120px',
+                width: 'max-content',
+                pointerEvents: 'none',
+              }}>
+                Para usar el filtro selecciona una opción en el filtro (solo una) y luego dale en <span style={{color:'#00e6e6'}}>Buscar</span>.
+              </div>
+              <button className="Filtros-buscar-btn" onClick={buscar}>Buscar</button>
+            </div>
             <h2 className="Filtros-title">Filtrar por</h2>
             <div className="Filtros-group">
               <div className="Filtros-group">
