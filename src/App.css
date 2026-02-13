@@ -21,10 +21,14 @@
   background: #d32f2f;
 }
 .Catalogo-descuento {
-  color: #d32f2f;
-  font-size: 1rem;
-  font-weight: bold;
-  margin-left: 0.3rem;
+  color: #fff;
+  background: linear-gradient(90deg,#43a047 60%,#388e3c 100%);
+  border-radius: 6px;
+  padding: 0.13rem 0.6rem;
+  font-size: 1.01rem;
+  margin-left: 0.7rem;
+  font-weight: 600;
+  box-shadow: 0 1px 4px 0 rgba(67,160,71,0.08);
 }
 /* Descripción y precios en cards del catálogo */
 .Catalogo-desc {
@@ -849,6 +853,15 @@ a.Whatsapp-float img {
     width: 40vw;
     max-width: 350px;
     margin: 0 auto;
+    background: #f8fafd;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.07);
+    padding: 1.2rem 1rem 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1.5px solid #e3e8f0;
+    margin-bottom: 1.2rem;
   }
 }
 
@@ -954,8 +967,12 @@ a.Whatsapp-float img {
   box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);
 }
 .Catalogo-titulo {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.7rem;
+  font-weight: 700;
+  color: #1a237e;
+  letter-spacing: 0.5px;
+  text-align: center;
 }
 .Catalogo-precio {
   font-weight: bold;
@@ -1067,14 +1084,21 @@ a.Whatsapp-float img {
   margin-bottom: 1rem;
 }
 .Footer-col h3 {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  font-weight: bold;
-}
-.Footer-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  font-size: 1.01rem;
+  color: #333;
+  margin: 0.5rem 0 0.2rem 0;
+  text-align: left;
+  max-width: 95%;
+  word-break: break-word;
+  white-space: pre-line;
+  margin-left: auto;
+  margin-right: auto;
+  background: #f3f6fb;
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem 0.7rem 0.9rem;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+  border: 1px solid #e3e8f0;
+  margin-bottom: 0.7rem;
 }
 .Footer-col ul li {
   margin-bottom: 0.5rem;

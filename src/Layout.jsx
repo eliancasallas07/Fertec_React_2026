@@ -10,7 +10,7 @@ import mastercardIcon from './img/mastercard.png';
 import burbujaAudio from './audio/burbuja-sonido.mp3';
 import navBurbujaAudio from './audio/nav-burbuja.mp3';
 // Datos de cerraduras
-const CERRADURAS = [
+export const CERRADURAS = [
               {
                 key: 'a89',
                 nombre: 'Cerradura A89',
@@ -36,7 +36,7 @@ const CERRADURAS = [
               color: 'Negro',
               nivel: 'Intermedia',
               img: [require('./videos/j23.mp4'), require('./videos/j23-2.mp4'), require('./videos/j23-3.mp4')],
-              desc: 'Cerradura Automática\nIdeal para portones a la intemperie, puertas de garaje\nCertificación IP67\nMétodos de apertura:\nHuella\nClave\nTarjeta\nLlave de seguridad\nRemotamente desde el celular.',
+              desc: 'Automática\n\nIdeal para portones a la intemperie, puertas de garaje\nCertificación IP67\n\nMétodos de apertura:\nHuella\nClave\nTarjeta\nLlave de seguridad\nRemotamente desde el celular\n\nColor: Negro',
               descuento: '-19%'
             },
           {
@@ -50,7 +50,7 @@ const CERRADURAS = [
             color: 'Negro',
             nivel: 'Básica',
             img: [require('./img/t8.jpeg'), require('./img/t8-2.jpeg')],
-            desc: 'Ideal para alcobas, oficinas y negocios.\nMétodos de apertura:\nHuella\nClave\nLlave de seguridad\nApertura remota por Bluetooth.',
+            desc: 'Inteligente\n\nIdeal para alcobas, oficinas y negocios\n\nMétodos de apertura:\nHuella\nClave\nLlave de seguridad\nApertura remota por Bluetooth\n\nColor: Negro',
             descuento: '-20%'
           },
         {
@@ -64,7 +64,7 @@ const CERRADURAS = [
           color: 'Negro',
           nivel: 'Intermedia',
           img: [require('./img/k86.jpeg'), require('./img/k86-2.jpeg'), require('./videos/k86-3.mp4')],
-          desc: 'Color: Negro.\nCámara y pantalla.\nPuede ser instalada en puertas de madera y metal.\nIdeal para casas residenciales y apartamentos.\nAlimentación: Batería de Litio Recargable.',
+          desc: 'Manual\n\nIdeal para casas residenciales y apartamentos\nPuede ser instalada en puertas de madera y metal\nCámara y pantalla\nAlimentación: Batería de litio recargable\n\nColor: Negro',
           descuento: '-18%'
         },
       {
@@ -78,7 +78,7 @@ const CERRADURAS = [
         color: 'Negro',
         nivel: 'Básica',
         img: [require('./img/k9.jpeg'), require('./img/k9-2.jpeg'), require('./videos/k9-3.mp4')],
-        desc: 'Color: Negro.\nPuede ser instalada en puertas de madera y metal.\nIdeal para casas residenciales y apartamentos.',
+        desc: 'Manual\n\nIdeal para casas residenciales y apartamentos\nPuede ser instalada en puertas de madera y metal\n\nColor: Negro',
         descuento: '-18%'
       },
     {
@@ -92,7 +92,7 @@ const CERRADURAS = [
       color: 'Negro',
       nivel: 'Intermedia',
       img: [require('./img/k7-plus.jpeg'), require('./img/k7-plus-2.jpeg'), require('./img/k7-plus-3.jpeg')],
-      desc: 'Color: Negro.\nPuede ser instalada en puertas de madera y metal.\nIncluye Cámara y pantalla.\nCuenta con batería de litio recargable.',
+      desc: 'Manual\n\nIdeal para puertas de madera y metal\nIncluye cámara y pantalla\nCuenta con batería de litio recargable\n\nColor: Negro',
       descuento: '-18%'
     },
   {
@@ -106,7 +106,7 @@ const CERRADURAS = [
     color: 'Negro',
     nivel: 'Básica',
     img: [require('./img/k7.jpeg'), require('./img/k7-2.jpeg'), require('./videos/k7-3.mp4')],
-    desc: 'Precio de venta $500.000\nColor negro\nCerradura tipo manual\nIdeal para hogares, hotelería, Airbag\nPuede ser instalada en puertas de metal y madera',
+    desc: 'Manual\n\nIdeal para hogares, hotelería, Airbag\nPuede ser instalada en puertas de metal y madera\n\nColor: Negro\nCerradura tipo manual',
     descuento: '-17%'
   },
 ];
@@ -462,7 +462,11 @@ const Layout = ({ children, titulo }) => {
                   <img src={c.img} alt={c.nombre} className="Catalogo-img Catalogo-img-small" />
                 )}
                 <h2 className="Catalogo-titulo">{c.nombre}</h2>
-                <p className="Catalogo-desc">{c.desc}</p>
+                <div className="Catalogo-desc">
+                  {c.desc.split('\n').map((line, idx) => (
+                    <div key={idx} style={{fontWeight:'bold'}}>{line}</div>
+                  ))}
+                </div>
                 <div className="Catalogo-precios">
                   <span className="Catalogo-precio-tachado">${c.precioTachado.toLocaleString()}</span>
                   <span className="Catalogo-precio">${c.precio.toLocaleString()} COP</span>
